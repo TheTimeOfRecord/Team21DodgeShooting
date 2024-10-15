@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyHomingProjectile : MonoBehaviour
+{
+    public float speed = 5f;
+    public string playerTag = "Player";
+    private Transform target;
+    private Rigidbody2D rb;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag(playerTag)?.transform;
+
+        
+
+    }
+    private void FixedUpdate()
+    {
+        if (target == null)
+        {
+            
+            rb.velocity = Vector2.down * speed;
+            return;
+        }
+
+        Vector2 direction = (Vector2)target.transform.position - rb.position;
+        direction.Normalize();
+        rb.velocity = direction * speed;    
+        
+    }
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+
+
+}
