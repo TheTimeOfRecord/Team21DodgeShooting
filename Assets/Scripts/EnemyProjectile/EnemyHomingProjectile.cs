@@ -12,7 +12,7 @@ public class EnemyHomingProjectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag(playerTag)?.transform;
-
+        // 플레이어에 태그 추가 후 진행
         
 
     }
