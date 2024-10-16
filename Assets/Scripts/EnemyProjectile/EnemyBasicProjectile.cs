@@ -5,10 +5,8 @@ using UnityEngine;
 public class EnemyBasicProjectile : MonoBehaviour
 {
     public float speed = 5f;
-
-    public Vector2 direction = Vector2.down;
-
     private Rigidbody2D rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -17,7 +15,7 @@ public class EnemyBasicProjectile : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = direction * speed;
+        rb.velocity = Vector2.down * speed;
     }
     void OnBecameInvisible()
     {
