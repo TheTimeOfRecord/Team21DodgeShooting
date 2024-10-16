@@ -30,20 +30,32 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    //public GameObject SpawnFromPool(string tag)
-    //{
-    //    if (!PoolDictionary.ContainsKey(tag))
-    //    {
-    //        return null;
-    //    }
-    //    else if (PoolDictionary[tag].TryDequeue(out GameObject obj))
-    //    {
-    //        PoolDictionary[tag].Enqueue(obj);
-    //        obj.SetActive(true);
-    //        return obj;
-    //    }
-    //    else
-    //    {
-    //    }
-    //}
+    public GameObject SpawnFromPool(string tag)
+    {
+        if (!PoolDictionary.ContainsKey(tag))
+        {
+            return null;
+        }
+        else if (PoolDictionary[tag].TryDequeue(out GameObject obj))
+        {
+            PoolDictionary[tag].Enqueue(obj);
+            obj.SetActive(true);
+            return obj;
+        }
+        else
+        {
+            Pool pool = Pools.Find(x => x.tag == tag);
+            if(pool != null)
+            {
+                GameObject newObj = Instantiate(pool.prefab);
+                newObj.SetActive(true);
+                PoolDictionary[tag].Enqueue(newObj);
+                return newObj;
+            }
+            else
+            {
+                return null;
+            }
+        }
+    }
 }
