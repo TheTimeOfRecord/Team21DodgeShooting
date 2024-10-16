@@ -26,12 +26,12 @@ public class DodgeController : MonoBehaviour
 
     private void HandleAttackDelay()
     {
-        if(timeSinceLastAttack <= stats.CurrentStat.delay)
+        if(timeSinceLastAttack <= stats.CurrentStat.attackDelay)
         {
             timeSinceLastAttack += Time.deltaTime;
         }
 
-        if(isAttacking && timeSinceLastAttack > stats.CurrentStat.delay)
+        if(isAttacking && timeSinceLastAttack > stats.CurrentStat.attackDelay)
         {
             timeSinceLastAttack = 0;
             CallFireEvent();
