@@ -6,8 +6,9 @@ public class PlayerInputController : DodgeController
     private Camera _camera;
     private Vector2 previousAim = Vector2.zero;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _camera = Camera.main;
     }
 
@@ -33,7 +34,6 @@ public class PlayerInputController : DodgeController
 
     public void OnFire(InputValue value)
     {
-        //공격
-        CallFireEvent();
+        isAttacking = value.isPressed;
     }
 }
