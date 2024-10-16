@@ -49,10 +49,4 @@ public class HoveringEnemyController : EnemyController
         transform.position = PlayerTransform.position + new Vector3(x, y);
         if (rad >= Mathf.PI * 2) rad = 0;
     }
-
-    private void RotateToTarget(Vector2 direction)
-    {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.localRotation = Quaternion.Euler(0, 0, rotZ - 90f);
-    }
 }
