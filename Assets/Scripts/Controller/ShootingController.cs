@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class ShootingController : MonoBehaviour
 {
-    [SerializeField] private GameObject[] projectilePrefabs;
     [SerializeField] private Transform pivot;
 
     private DodgeController controller;
 
     private Vector2 aim = Vector2.zero;
+
     private void Awake()
     {
         controller = GetComponent<DodgeController>();
@@ -28,8 +28,9 @@ public class ShootingController : MonoBehaviour
 
     private void CreateProjectile()
     {
-        //일단 첫번째 프리팹의 있는 아이템 소환
-        GameObject projectile = Instantiate(projectilePrefabs[0], pivot.position, Quaternion.identity);
+        //총알 생성
+        GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool("PlayerBasicBullet");
+        projectile.transform.position = pivot.position;
     }
 
     private void OnAim(Vector2 direction)
