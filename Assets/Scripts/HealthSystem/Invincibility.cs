@@ -7,7 +7,7 @@ public class Invincibility : MonoBehaviour
 
     //무적 : 모든 투사체를 통과하며, 반짝거리는 애니메이션이 보임
 
-    [SerializeField] private Collider2D collider;
+    [SerializeField] private Collider2D hitCollider;
 
     private HealthSystem healthSystem;
 
@@ -15,7 +15,7 @@ public class Invincibility : MonoBehaviour
     private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
-        collider = GetComponent<Collider2D>();
+        hitCollider = GetComponent<Collider2D>();
     }
 
     private void Start()
@@ -26,13 +26,13 @@ public class Invincibility : MonoBehaviour
 
     private void BecomeInvincible()
     {
-        collider.enabled = false;
+        hitCollider.enabled = false;
         //반짝이는 이펙트 켜짐
     }
 
     private void EndInvincibility()
     {
-        collider.enabled = true;
+        hitCollider.enabled = true;
         //반짝이는 이펙트 꺼짐
     }
 }
