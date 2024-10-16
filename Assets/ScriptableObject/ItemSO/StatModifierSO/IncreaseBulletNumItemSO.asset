@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2601482c679eb674785651d11d15750c, type: 3}
-  m_Name: ItemSO
+  m_Name: IncreaseBulletNumItemSO
   m_EditorClassIdentifier: 
   itemImage: {fileID: 0}
-  itemType: 0
-  itemInfo: {fileID: 0}
-  stat: 0
+  itemType: 100
+  itemBackColor: {r: 0.9150943, g: 0.90730214, b: 0.10791205, a: 0}
+  fontColor: {r: 0.28920433, g: 0.4529094, b: 0.6320754, a: 0}
+  itemInfo: "\uD0C4\uD658 \uAC1C\uC218 \uC99D\uAC00"
+  stat: 1
