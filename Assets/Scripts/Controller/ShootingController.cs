@@ -8,6 +8,7 @@ public class ShootingController : MonoBehaviour
     private DodgeController controller;
 
     private Vector2 aim = Vector2.zero;
+    private string bulletTag = "PlayerBasicBullet";
 
     private void Awake()
     {
@@ -28,8 +29,21 @@ public class ShootingController : MonoBehaviour
 
     private void CreateProjectile()
     {
-        //총알 생성
-        GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool("PlayerBasicBullet");
+        switch (transform.tag)
+        {
+            case "Player":
+                bulletTag = "PlayerBasicBullet";
+                break;
+            case "BasicEnemy":
+                bulletTag = "EnemyBasicBullet";
+                break;
+            case "HomingEnemy":
+                bulletTag = "EnemyHomingBullet";
+                break;
+
+        }
+        //총알 생성 => 어떤 종류의 총알을 발사할 것인가?
+        GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag);
         projectile.transform.position = pivot.position;
     }
 

@@ -1,17 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DefalutStatSO", menuName = "DodgeController/StatSO", order = 0)]
-public class HealthStatSO : ScriptableObject
+public class HealthStatSO : ScriptableObject, ICloneable
 {
     [Header("BaseStat")]
     public float maxHP;
     public float ATK;
     public float speed;
     public float exp;
-    public float bulltSize;
-    public float delay;
+    public float bulletSize;
+    public float bulletSpeed;
+    public float attackDelay;
+
+    public object Clone()
+    {
+        return this.MemberwiseClone();
+    }
 }
 
 public enum needExp
