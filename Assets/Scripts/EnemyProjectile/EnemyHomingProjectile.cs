@@ -26,8 +26,8 @@ public class EnemyHomingProjectile : MonoBehaviour
         }
 
         Vector2 direction = (Vector2)target.transform.position - rb.position;
-        direction.Normalize();
-        rb.velocity = direction * speed;
+        
+        rb.velocity = direction.normalized * speed;
         
     }
     void OnBecameInvisible()
