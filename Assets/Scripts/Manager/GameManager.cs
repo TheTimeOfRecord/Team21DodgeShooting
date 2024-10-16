@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
-    public ObjectPool objPool;
+    public ObjectPool objPool { get; private set; }
 
     public static GameManager Instance
     {
@@ -33,5 +33,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        objPool = GetComponent<ObjectPool>();
     }
 }
