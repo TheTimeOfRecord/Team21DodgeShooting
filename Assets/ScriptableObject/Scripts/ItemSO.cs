@@ -20,9 +20,8 @@ public class ItemSO : ScriptableObject
     [Header("Base Info")]
     public Image itemImage;
     public ItemType itemType;
-    public Color itemBackColor;
-    public Color fontColor;
-    public string itemInfo;
+    public Color itemColor;
+    public Text itemInfo;
     public float stat;
     
 }
