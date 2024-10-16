@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerProjectileController : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private Vector2 direction;
+    private Vector2 direction = new Vector2 (0,1);
     public float speed = 5; // 나중에 삭제
     private bool isReady;
 
@@ -40,6 +40,14 @@ public class PlayerProjectileController : MonoBehaviour
         //transform.localScale = Vector3.one * attackData.size;
         //크기조절
     }
+
+
+    void OnBecameInvisible()
+    {
+        Destroy(this);
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (IsLayerMatched(levelCollisionLayer.value, collision.gameObject.layer))
