@@ -5,13 +5,15 @@ using UnityEngine;
 public class EnemyController : DodgeController
 {
     protected Transform AttackTarget { get; private set; }
-    
+    [SerializeField] private string targetTag = "Player";
+
     // 추후 GameManager에서 Player 받아옴
     public Transform PlayerTransform;
 
     protected override void Awake()
     {
         base.Awake();
+        PlayerTransform = GameObject.FindGameObjectWithTag(targetTag).transform;
     }
 
     protected virtual void Start()

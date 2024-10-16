@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TracingEnemyController : EnemyController
 {
-    [SerializeField] private string targetTag = "Player";
     private bool isCollidingWithTarget;
 
     protected override void Start()
