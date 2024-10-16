@@ -17,7 +17,7 @@ public class EnemyController : DodgeController
     protected virtual void Start()
     {
         AttackTarget = PlayerTransform;
-        // Target = GameManager.Instance.Player;
+        // AttackTarget = GameManager.Instance.Player;
     }
 
     protected virtual void FixedUpdate()
