@@ -14,6 +14,7 @@ public class PlayerProjectileController : MonoBehaviour
     void Start()
     {
         rb= GetComponent<Rigidbody2D>();
+        isReady = true;
     }
 
     
