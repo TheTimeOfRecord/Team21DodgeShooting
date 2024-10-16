@@ -29,7 +29,7 @@ public class ShootingController : MonoBehaviour
     private void CreateProjectile()
     {
         //일단 첫번째 프리팹의 있는 아이템 소환
-        GameObject projectile = Instantiate(projectilePrefabs[0], pivot.position, Quaternion.identity);
+        //GameObject projectile = Instantiate(projectilePrefabs[0], pivot.position, Quaternion.identity);
     }
 
     private void OnAim(Vector2 direction)
