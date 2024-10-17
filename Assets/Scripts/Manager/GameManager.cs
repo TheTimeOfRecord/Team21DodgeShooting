@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     public ObjectPool objPool { get; private set; }
+    public Transform Player { get; private set; }
 
     public static GameManager Instance
     {
@@ -35,5 +36,6 @@ public class GameManager : MonoBehaviour
         }
 
         objPool = GetComponent<ObjectPool>();
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }
