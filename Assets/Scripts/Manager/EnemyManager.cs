@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     public ObjectPool EnemyObjectPool { get; private set; }
 
     [SerializeField] private string enemyTag;
+    [SerializeField] private float spawnDelayTime;
 
     private bool isSpawn = true;
 
@@ -37,12 +38,12 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator MakeEnemy()
     {
+        yield return new WaitForSeconds(spawnDelayTime);
         if (EnemyObjectPool.PoolDictionary[enemyTag].Any(x => x.activeSelf == false))
         {
             GameObject obj = EnemyObjectPool.GetObjectFromPool(enemyTag);
             obj.transform.position = RandomSpawnInRange();
         }
-        yield return new WaitForSeconds(1f);
         isSpawn = true;
     }
 
