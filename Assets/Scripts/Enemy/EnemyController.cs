@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemyController : DodgeController
 {
     protected Transform AttackTarget { get; private set; }
+
+    protected Vector2 direction;
+
     // [SerializeField] private string targetTag = "Player";
-    
-    // 추후 Stat의 Speed로 변환 예정
-    [SerializeField] protected float speed;
 
     protected override void Awake()
     {
@@ -35,9 +35,9 @@ public class EnemyController : DodgeController
         return (AttackTarget.position - transform.position).normalized;
     }
 
-    protected void RotateToTarget(Vector2 direction)
+    protected void RotateToTarget(Vector2 _direction)
     {
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.localRotation = Quaternion.Euler(0, 0, rotZ - 90f);
+        float rotZ = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
     }
 }

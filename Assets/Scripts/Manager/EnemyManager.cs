@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
+
     [SerializeField] private GameObject[] enemySpawnPoint;
-    private Transform spawnPoint;
 
     public ObjectPool EnemyObjectPool { get; private set; }
+
+    [SerializeField] private string enemyTag;
 
     private bool isSpawn = true;
 
@@ -27,31 +30,33 @@ public class EnemyManager : MonoBehaviour
     {
         if (isSpawn)
         {
+            isSpawn = false;
             StartCoroutine(MakeEnemy());
         }
     }
 
     IEnumerator MakeEnemy()
     {
-        spawnPoint = RandomSpawnRange();
-        GameObject obj = EnemyObjectPool.GetObjectFromPool("TracingEnemy");
-        obj.transform.position = spawnPoint.position;
-        isSpawn = false;
-        yield return new WaitForSeconds(3f);
+        if (EnemyObjectPool.PoolDictionary[enemyTag].Any(x => x.activeSelf == false))
+        {
+            GameObject obj = EnemyObjectPool.GetObjectFromPool(enemyTag);
+            obj.transform.position = RandomSpawnInRange();
+        }
+        yield return new WaitForSeconds(1f);
         isSpawn = true;
     }
 
-    private Transform SelectRandomSpawnPoint()
+    private Vector2 SelectRandomSpawnPoint()
     {
         int index = Random.Range(0, 4);
-        return enemySpawnPoint[index].transform;
+        return enemySpawnPoint[index].transform.position;
     }
 
-    private Transform RandomSpawnRange()
+    private Vector2 RandomSpawnInRange()
     {
         float range = Random.Range(-10, 10);
-        Transform randomSpawnTransform = SelectRandomSpawnPoint();
-        randomSpawnTransform.position = randomSpawnTransform.position + new Vector3(range, range, 10);
-        return randomSpawnTransform;
+        Vector2 randomPosition = SelectRandomSpawnPoint();
+        randomPosition = randomPosition + new Vector2(range, range);
+        return randomPosition;
     }
 }

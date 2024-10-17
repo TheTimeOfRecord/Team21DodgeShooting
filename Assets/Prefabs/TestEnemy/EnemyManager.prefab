@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  enemyTag: BlinkingEnemy
 --- !u!114 &5942979210809720813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,4 +66,13 @@ MonoBehaviour:
   Pools:
   - tag: TracingEnemy
     prefab: {fileID: 7666657067879035701, guid: 116e183bfbaeb7c419b95b70b41eaa84, type: 3}
-    size: 10
+    size: 15
+  - tag: StraightEnemy
+    prefab: {fileID: 5968849177009417316, guid: ecc9dc122d6eaaa48a003d12038139aa, type: 3}
+    size: 15
+  - tag: HoveringEnemy
+    prefab: {fileID: 5598527576105797915, guid: 2e17655fb5f5789428f52da3778e1813, type: 3}
+    size: 15
+  - tag: BlinkingEnemy
+    prefab: {fileID: 7925105876300810159, guid: d1539b69a04337a4fb726ec2c1ebe432, type: 3}
+    size: 15

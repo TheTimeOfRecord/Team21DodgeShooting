@@ -13,7 +13,7 @@ public class BlinkingEnemyController : EnemyController
 
     protected override void FixedUpdate()
     {
-        Vector2 direction = DirectionToTarget();
+        direction = DirectionToTarget();
         RotateToTarget(direction);
 
         if (canBlink)
