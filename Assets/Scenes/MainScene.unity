@@ -210,7 +210,6 @@ GameObject:
   m_Component:
   - component: {fileID: 159288114}
   - component: {fileID: 159288113}
-  - component: {fileID: 159288115}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -245,28 +244,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &159288115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159288112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c5f42541e5bea41b6f8168c3a0c026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pools:
-  - tag: PlayerBasicBullet
-    prefab: {fileID: 1651907010457833412, guid: e44d167c199a0cd43ac1ed266eb40735, type: 3}
-    size: 30
-  - tag: EnemyBasicBullet
-    prefab: {fileID: 1651907010457833412, guid: 70f0828db6825f94ab4512d1433d41f6, type: 3}
-    size: 100
-  - tag: EnemyHomingBullet
-    prefab: {fileID: 1651907010457833412, guid: c9a33266f8f88414db386851d8c42f5b, type: 3}
-    size: 100
 --- !u!1 &315571953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1168,7 @@ GameObject:
   - component: {fileID: 1375510771}
   - component: {fileID: 1375510773}
   - component: {fileID: 1375510772}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1361,7 +1338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1447353022}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WeaponPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1458,6 +1435,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547598028}
   m_CullTransparentMesh: 1
+--- !u!1 &1611901795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611901797}
+  - component: {fileID: 1611901796}
+  m_Layer: 0
+  m_Name: BulletSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1611901796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611901795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c5f42541e5bea41b6f8168c3a0c026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pools:
+  - tag: StandardBullet
+    prefab: {fileID: 7898381357871337657, guid: 592a93ceecbc420469ea1db09edcfb51, type: 3}
+    size: 100
+  - tag: PierceBullet
+    prefab: {fileID: 7898381357871337657, guid: 2803ab1e14c6eb54bb6052df52e67e84, type: 3}
+    size: 100
+  - tag: HomingBullet
+    prefab: {fileID: 7898381357871337657, guid: 4dbfeb82c19543f40a745ef6680fff55, type: 3}
+    size: 100
+  - tag: SpreadBullet
+    prefab: {fileID: 7898381357871337657, guid: 5d3397f2998101c46b9dcb845b79a298, type: 3}
+    size: 200
+--- !u!4 &1611901797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611901795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.97834235, y: -0.19473156, z: 0.07655574}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1638390029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1638390030}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1671,7 +1705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1722334611}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CameraPos
   m_TagString: Untagged
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
@@ -1711,7 +1745,7 @@ GameObject:
   - component: {fileID: 1722886752}
   - component: {fileID: 1722886751}
   - component: {fileID: 1722886754}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2070,3 +2104,4 @@ SceneRoots:
   - {fileID: 1376374505}
   - {fileID: 159288114}
   - {fileID: 1412151419}
+  - {fileID: 1611901797}
