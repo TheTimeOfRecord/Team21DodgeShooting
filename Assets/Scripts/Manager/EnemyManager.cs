@@ -38,12 +38,12 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator MakeEnemy()
     {
-        yield return new WaitForSeconds(spawnDelayTime);
         if (EnemyObjectPool.PoolDictionary[enemyTag].Any(x => x.activeSelf == false))
         {
             GameObject obj = EnemyObjectPool.GetObjectFromPool(enemyTag);
             obj.transform.position = RandomSpawnInRange();
         }
+        yield return new WaitForSeconds(spawnDelayTime);
         isSpawn = true;
     }
 
