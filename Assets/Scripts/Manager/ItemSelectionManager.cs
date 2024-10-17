@@ -19,7 +19,10 @@ public class ItemSelectionManager : MonoBehaviour
 
         List<ItemSO> selectedItems = GetRandomItems(selectionOptionCount);
 
-        
+        for (int i = 0; i < optionButtons.Count; i++)
+        {
+            optionButtons[i].GetComponentInChildren<Image>().sprite = selectedItems[i].itemImage.sprite;
+        }
     }
 
     private List<ItemSO> GetRandomItems(int count)
