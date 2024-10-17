@@ -48,6 +48,6 @@ public class BlinkingEnemyController : EnemyController
                 break;
             }
         }
-        transform.position = PlayerTransform.position + new Vector3(x, y, 0f);
+        transform.position = AttackTarget.position + new Vector3(x, y, 0f);
     }
 }

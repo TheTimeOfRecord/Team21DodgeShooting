@@ -46,7 +46,7 @@ public class HoveringEnemyController : EnemyController
         float initialRad = Mathf.Atan2(initDirectionInRange.y, initDirectionInRange.x);
         float x = Range * Mathf.Cos(rad + initialRad);
         float y = Range * Mathf.Sin(rad + initialRad);
-        transform.position = PlayerTransform.position + new Vector3(x, y);
+        transform.position = AttackTarget.position + new Vector3(x, y);
         if (rad >= Mathf.PI * 2) rad = 0;
     }
 }
