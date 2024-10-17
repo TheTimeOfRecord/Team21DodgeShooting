@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +19,11 @@ public enum ItemType
 public class ItemSO : ScriptableObject
 {
     [Header("Base Info")]
-    public Image itemImage;
+    public Sprite itemSprite;
     public ItemType itemType;
     public Color itemBackColor;
     public Color fontColor;
-    public string itemInfo;
+    public string itemInfoText;
+    public string statInfoText;
     public float stat;
-    
 }

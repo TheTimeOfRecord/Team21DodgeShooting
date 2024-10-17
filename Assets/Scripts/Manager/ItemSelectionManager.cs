@@ -10,8 +10,9 @@ public class ItemSelectionManager : MonoBehaviour
 {
     [SerializeField] private GameObject selectPanel;
     [SerializeField] private List<ItemSO> allItems;
-    [SerializeField] private List<Button> optionButtons;
+    [SerializeField] private List<ItemButtonHandler> optionButtons;
     private int selectionOptionCount = 3;
+    
     public void DisplaySelectionOptions()
     {
         //selectPanel을 활성화하고 버튼에 아이템을 랜덤으로 넣는다.
@@ -21,9 +22,14 @@ public class ItemSelectionManager : MonoBehaviour
 
         for (int i = 0; i < optionButtons.Count; i++)
         {
-            optionButtons[i].GetComponentInChildren<Image>().sprite = selectedItems[i].itemImage.sprite;
+            optionButtons[i].SetUpButton(selectedItems[i]);
+
+            int index = i;
+            optionButtons[i].GetComponent<Button>().onClick.RemoveAllListeners();
+            optionButtons[i].GetComponent<Button>().onClick.AddListener(() => OnItemSelected(selectedItems[index]));
         }
     }
+
 
     private List<ItemSO> GetRandomItems(int count)
     {
@@ -39,5 +45,13 @@ public class ItemSelectionManager : MonoBehaviour
             }
         }
         return selectedItems;
+    }
+
+    private void OnItemSelected(ItemSO selectedItemSO)
+    {
+        //TODO : 아이템 선택 처리 로직
+        Debug.Log($"Button {selectedItemSO.itemType} onClick assigned");
+
+        selectPanel.SetActive(false);
     }
 }
