@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
-    [SerializeField] private Transform enemySpawnPoint;
+    [SerializeField] private GameObject[] enemySpawnPoint;
+    private Transform spawnPoint;
 
     public ObjectPool EnemyObjectPool { get; private set; }
 
@@ -32,10 +33,25 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator MakeEnemy()
     {
+        spawnPoint = RandomSpawnRange();
         GameObject obj = EnemyObjectPool.GetObjectFromPool("TracingEnemy");
-        obj.transform.position = enemySpawnPoint.position;
+        obj.transform.position = spawnPoint.position;
         isSpawn = false;
         yield return new WaitForSeconds(3f);
         isSpawn = true;
+    }
+
+    private Transform SelectRandomSpawnPoint()
+    {
+        int index = Random.Range(0, 4);
+        return enemySpawnPoint[index].transform;
+    }
+
+    private Transform RandomSpawnRange()
+    {
+        float range = Random.Range(-10, 10);
+        Transform randomSpawnTransform = SelectRandomSpawnPoint();
+        randomSpawnTransform.position = randomSpawnTransform.position + new Vector3(range, range, 10);
+        return randomSpawnTransform;
     }
 }
