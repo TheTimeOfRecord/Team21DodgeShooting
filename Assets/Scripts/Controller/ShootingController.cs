@@ -6,13 +6,16 @@ public class ShootingController : MonoBehaviour
     [SerializeField] private Transform pivot;
 
     private DodgeController controller;
+    private StatHandler statHandler;
 
+    private Vector2 target = Vector2.zero;
     private Vector2 aim = Vector2.zero;
     private string bulletTag = "PlayerBasicBullet";
 
     private void Awake()
     {
         controller = GetComponent<DodgeController>();
+        statHandler = GetComponent<StatHandler>();
     }
 
     private void Start()
@@ -32,7 +35,8 @@ public class ShootingController : MonoBehaviour
         switch (transform.tag)
         {
             case "Player":
-                bulletTag = "PlayerBasicBullet";
+                bulletTag = "HomingBullet";
+                target = aim;
                 break;
             case "BasicEnemy":
                 bulletTag = "EnemyBasicBullet";
@@ -42,9 +46,18 @@ public class ShootingController : MonoBehaviour
                 break;
 
         }
-        //총알 생성 => 어떤 종류의 총알을 발사할 것인가?
-        GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag);
-        projectile.transform.position = pivot.position;
+        //spread의경우 오브젝트만 나머지는 , pivot.position 추가 + setactive false로
+        GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag, pivot.position);
+
+        Bullet bullet = projectile.GetComponent<Bullet>();
+        bullet.SetShooter(this.gameObject);
+
+        if(bullet != null)
+        {
+            //spread의 경우 target엔 pivot.position 나머지는 aim
+            bullet.SetBulletSize(statHandler.CurrentStat.bulletSize);
+            bullet.Move(statHandler.CurrentStat.bulletSpeed, aim);
+        }
     }
 
     private void OnAim(Vector2 direction)
