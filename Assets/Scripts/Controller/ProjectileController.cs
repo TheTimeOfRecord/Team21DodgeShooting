@@ -9,17 +9,28 @@ public class ProjectileController : MonoBehaviour
     [SerializeField] private LayerMask EnemyLayer;
     [SerializeField] private LayerMask PlayerLayer;
 
+    private Bullet bullet;
+
     private Collider2D thisCollider;
 
     private void Awake()
     {
         thisCollider = GetComponent<Collider2D>();
+        bullet = GetComponent<Bullet>();
+    }
+
+    private void OnEnable()
+    {
+        Invoke("DisableProjectile", 5f);
+    }
+
+    private void DisableProjectile()
+    {
+        bullet.DestroyProjectile();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Bullet bullet = GetComponent<Bullet>();
-
         //총알을 쏜 주체가 맞게되는 경우
         if (collision.gameObject == bullet.shooter)
         {
