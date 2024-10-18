@@ -15,6 +15,8 @@ public class ItemSelectionManager : MonoBehaviour
     [SerializeField] private List<ItemButtonHandler> optionButtons;
     private int selectionOptionCount = 3;
 
+    [SerializeField] private StatHandler statHandler;
+
     private void Awake()
     {
         if (instance == null)
@@ -65,7 +67,15 @@ public class ItemSelectionManager : MonoBehaviour
     private void OnItemSelected(ItemSO selectedItemSO)
     {
         //TODO : 아이템 선택 처리 로직
-        Debug.Log($"Button {selectedItemSO.itemType} onClick assigned");
+        if (selectedItemSO.itemType == ItemType.StatModifier)
+        {
+            statHandler.ModifiyCharacterStat(selectedItemSO);
+        }
+        else if (selectedItemSO.itemType == ItemType.UsableItem)
+        {
+
+        }
+        Debug.Log($"Button {selectedItemSO.itemName} onClick assigned");
 
         selectPanel.SetActive(false);
     }
