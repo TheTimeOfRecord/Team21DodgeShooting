@@ -5,18 +5,31 @@ public class HoveringEnemyController : EnemyController
 {
     [SerializeField, Range(1f, 5f)] private float Range;
     private float rad;
-    private bool isRanged = false;
+    private bool isRanged;
+    private bool isSpawn;
     private Vector2 initDirectionInRange;
+
+    // 추후 Stat의 Speed로 변환 예정
+    [SerializeField] protected float speed;
 
     protected override void Start()
     {
         base.Start();
+        isRanged = false;
+        isSpawn = false;
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        Vector2 direction = DirectionToTarget();
+
+        if (!isSpawn && gameObject.activeSelf)
+        {
+            isRanged = false;
+            isSpawn = true;
+        }
+
+        direction = DirectionToTarget();
 
         RotateToTarget(direction);
 
@@ -46,7 +59,7 @@ public class HoveringEnemyController : EnemyController
         float initialRad = Mathf.Atan2(initDirectionInRange.y, initDirectionInRange.x);
         float x = Range * Mathf.Cos(rad + initialRad);
         float y = Range * Mathf.Sin(rad + initialRad);
-        transform.position = PlayerTransform.position + new Vector3(x, y);
+        transform.position = AttackTarget.position + new Vector3(x, y);
         if (rad >= Mathf.PI * 2) rad = 0;
     }
 }
