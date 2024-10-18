@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 public class SpreadBullet : Bullet
 {
     private float bulletSpeed;
-    private Vector2 spawnPoint;
     private float offsetDistance = 0.5f;
 
 
@@ -14,12 +13,11 @@ public class SpreadBullet : Bullet
     {
         gameObject.SetActive(false);
         bulletSpeed = speed;
-        spawnPoint = piviotPosition;
-        SpreadBulletFire();
+        SpreadBulletFire(piviotPosition);
     }
 
 
-    private void SpreadBulletFire()
+    private void SpreadBulletFire(Vector2 pivoit)
     {
         {
             float angleStep = 360f / bulletCount;
@@ -33,7 +31,7 @@ public class SpreadBullet : Bullet
                 Vector2 bulletVector = new Vector2(bulletDirX, bulletDirY);
                 Vector2 bulletMoveDirection = bulletVector.normalized;
 
-                Vector2 spawnPosition = spawnPoint + bulletMoveDirection * offsetDistance;
+                Vector2 spawnPosition = pivoit + bulletMoveDirection * offsetDistance;
                 GameObject projectiles = GameManager.Instance.objPool.GetObjectFromPool("SpreadBullet", spawnPosition);
 
                 Rigidbody2D bulletRb = projectiles.GetComponent<Rigidbody2D>();

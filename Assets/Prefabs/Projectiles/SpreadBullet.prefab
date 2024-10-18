@@ -221,7 +221,7 @@ MonoBehaviour:
     m_Bits: 1024
   EnemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -238,3 +238,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletCount: 20
+  size: 1
