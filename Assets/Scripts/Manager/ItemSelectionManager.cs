@@ -8,11 +8,25 @@ using Random = UnityEngine.Random;
 
 public class ItemSelectionManager : MonoBehaviour
 {
+    public static ItemSelectionManager instance;
+
     [SerializeField] private GameObject selectPanel;
     [SerializeField] private List<ItemSO> allItems;
     [SerializeField] private List<ItemButtonHandler> optionButtons;
     private int selectionOptionCount = 3;
-    
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void DisplaySelectionOptions()
     {
         //selectPanel을 활성화하고 버튼에 아이템을 랜덤으로 넣는다.
