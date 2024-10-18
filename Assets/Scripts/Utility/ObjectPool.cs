@@ -31,6 +31,38 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    public GameObject GetObjectFromPool(string tag, Vector2 position)
+    {
+        //잘못된 태그일경우
+        if (!PoolDictionary.ContainsKey(tag))
+        {
+            return null;
+        }
+
+        //모든 총알이 생성되어있어서 사용중인 경우
+        if (PoolDictionary[tag].All(x => x.activeSelf == true))
+        {
+            //새로이 생성한다.
+            Pool pool = Pools.Find(x => x.tag == tag);
+            GameObject newobj = Instantiate(pool.prefab, position, Quaternion.identity, this.transform);
+            newobj.transform.position = position;   //위치 설정 한번 더
+            PoolDictionary[tag].Enqueue(newobj);
+            newobj.SetActive(true);
+            return newobj;
+        }
+
+        //제대로된 태그이며, 비활성화된 총알이 존재하는 경우
+        if (PoolDictionary[tag].TryDequeue(out GameObject obj))
+        {
+            //꺼내어준다
+            obj.transform.position = position;
+            obj.SetActive(true);
+            PoolDictionary[tag].Enqueue(obj);
+            return obj;
+        }
+        return null;
+    }
+
     public GameObject GetObjectFromPool(string tag)
     {
         //잘못된 태그일경우
