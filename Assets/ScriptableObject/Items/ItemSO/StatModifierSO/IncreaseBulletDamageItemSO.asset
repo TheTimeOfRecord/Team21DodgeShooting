@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IncreaseBulletDamageItemSO
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 0}
-  itemType: 0
+  itemType: IncreaseBulletDamageItemSO
   itemBackColor: {r: 0.7735849, g: 0.17143181, b: 0.16420436, a: 1}
   fontColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
   itemInfoText: "\uD0C4\uD658 \uB370\uBBF8\uC9C0 \uC99D\uAC00"
