@@ -10,6 +10,11 @@ public class SpreadBullet : Bullet
     private Vector2 spawnPoint;
     private float offsetDistance = 0.5f;
 
+    private void OnEnable()
+    {
+        //아이템에 따라 총알 갯수가 나뉠 경우 다음과 같이 초기화 하면 될듯
+        //bulletCount = shooter.GetComponent<StatHandler>().CurrentStat.bulletNum;
+    }
 
     public override void Move(float speed, Vector2 piviotPosition)
     {
