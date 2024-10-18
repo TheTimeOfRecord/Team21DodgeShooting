@@ -5,11 +5,11 @@ using UnityEngine;
 //일직선으로 날아감
 public class StandardBullet : Bullet
 {
-    private int bulletCount = 5;
     private float angleSpace = 5;
 
     public override void Move(float speed, Vector2 target)
     {
+        gameObject.SetActive(false);
         float baseAngle = GetBaseAngle(target);
         float startAngle = GetStartAngle(baseAngle);
         FireBullets(speed, startAngle);

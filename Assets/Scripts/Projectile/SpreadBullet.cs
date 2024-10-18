@@ -5,19 +5,14 @@ using UnityEngine.UIElements;
 //한 지점에서 퍼져나가는 총알. bulletCount를 조절하면 더 큰수, 작은수도 대응 가능
 public class SpreadBullet : Bullet
 {
-    public int bulletCount = 20;
     private float bulletSpeed;
     private Vector2 spawnPoint;
     private float offsetDistance = 0.5f;
 
-    private void OnEnable()
-    {
-        //아이템에 따라 총알 갯수가 나뉠 경우 다음과 같이 초기화 하면 될듯
-        //bulletCount = shooter.GetComponent<StatHandler>().CurrentStat.bulletNum;
-    }
 
     public override void Move(float speed, Vector2 piviotPosition)
     {
+        gameObject.SetActive(false);
         bulletSpeed = speed;
         spawnPoint = piviotPosition;
         SpreadBulletFire();
