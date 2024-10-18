@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81369b633286de4cbb19ac65f306137, type: 3}
   m_Name: RecoveryPotionItemSO
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 0}
+  itemSprite: {fileID: 0}
   itemType: 0
-  itemBackColor: {r: 0, g: 0, b: 0, a: 0}
-  fontColor: {r: 0, g: 0, b: 0, a: 0}
-  itemInfo: 
-  stat: 0
+  itemBackColor: {r: 1, g: 0.495283, b: 0.495283, a: 0}
+  fontColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0}
+  itemInfoText: "\uCCB4\uB825 \uD68C\uBCF5"
+  statInfoText: +100
+  stat: 100

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81369b633286de4cbb19ac65f306137, type: 3}
   m_Name: IncreaseBulletDamageItemSO
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 0}
+  itemSprite: {fileID: 0}
   itemType: 0
-  itemBackColor: {r: 0, g: 0, b: 0, a: 0}
-  fontColor: {r: 0, g: 0, b: 0, a: 0}
-  itemInfo: 
-  stat: 0
+  itemBackColor: {r: 0.7735849, g: 0.17143181, b: 0.16420436, a: 0}
+  fontColor: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 0}
+  itemInfoText: "\uD0C4\uD658 \uB370\uBBF8\uC9C0 \uC99D\uAC00"
+  statInfoText: +10
+  stat: 10

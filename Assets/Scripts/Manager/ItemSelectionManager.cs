@@ -56,6 +56,7 @@ public class ItemSelectionManager : MonoBehaviour
             if (selectedIndexes.Contains(randomIndex) == false)
             {
                 selectedItems.Add(allItems[randomIndex]);
+                selectedIndexes.Add(randomIndex);
             }
         }
         return selectedItems;

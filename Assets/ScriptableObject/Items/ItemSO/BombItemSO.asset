@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81369b633286de4cbb19ac65f306137, type: 3}
   m_Name: BombItemSO
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 0}
+  itemSprite: {fileID: 0}
   itemType: 0
-  itemBackColor: {r: 0, g: 0, b: 0, a: 0}
-  fontColor: {r: 0, g: 0, b: 0, a: 0}
-  itemInfo: 
-  stat: 0
+  itemBackColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0}
+  fontColor: {r: 1, g: 0.6273585, b: 0.6273585, a: 0}
+  itemInfoText: "\uD3ED\uD0C4 \uD68D\uB4DD"
+  statInfoText: +1
+  stat: 100
