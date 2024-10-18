@@ -4,6 +4,8 @@ using UnityEngine;
 public abstract class Bullet : MonoBehaviour
 {
     public GameObject shooter { get; private set; }
+    public int bulletCount = 1;
+    public float size = 1;
     protected Rigidbody2D rb;
 
     //데미지처리, 움직임, 사이크조절 다 따로하는게 좋아보인다.
@@ -17,6 +19,18 @@ public abstract class Bullet : MonoBehaviour
         DestroyProjectile();
     }
 
+    private void OnEnable()
+    {
+        if(shooter != null)
+        {
+            bulletCount = shooter.GetComponent<StatHandler>().CurrentStat.bulletNum;
+            size = shooter.GetComponent<StatHandler>().CurrentStat.bulletSize;
+            SetBulletSize(size);
+        }
+        Invoke("DestroyProjectile", 5f);
+    }
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,6 +39,7 @@ public abstract class Bullet : MonoBehaviour
     public void SetShooter(GameObject _shooter)
     {
         shooter = _shooter;
+        bulletCount = shooter.gameObject.GetComponent<StatHandler>().CurrentStat.bulletNum;
     }
 
     public void SetBulletSize(float size)

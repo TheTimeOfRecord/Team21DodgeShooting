@@ -13,6 +13,7 @@ public class HealthStatSO : ScriptableObject, ICloneable
     public float exp;
     public float bulletSize;
     public float bulletSpeed;
+    public int bulletNum;
     public float attackDelay;
 
     public object Clone()

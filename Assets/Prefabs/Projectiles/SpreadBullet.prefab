@@ -219,9 +219,12 @@ MonoBehaviour:
   bulletLayer:
     serializedVersion: 2
     m_Bits: 1024
-  collisionLayer:
+  EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &-3293545598466734168
 MonoBehaviour:
   m_ObjectHideFlags: 0

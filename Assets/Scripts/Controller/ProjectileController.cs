@@ -19,15 +19,6 @@ public class ProjectileController : MonoBehaviour
         thisBullet = GetComponent<Bullet>();
     }
 
-    private void OnEnable()
-    {
-        Invoke("DisableProjectile", 5f);
-    }
-
-    private void DisableProjectile()
-    {
-        thisBullet.DestroyProjectile();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

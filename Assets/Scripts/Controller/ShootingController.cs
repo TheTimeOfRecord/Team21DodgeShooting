@@ -35,7 +35,7 @@ public class ShootingController : MonoBehaviour
         switch (transform.tag)
         {
             case "Player":
-                bulletTag = "StandardBullet";
+                bulletTag = "HomingBullet";
                 target = aim;
                 break;
             case "BasicEnemy":
@@ -55,10 +55,8 @@ public class ShootingController : MonoBehaviour
         if(bullet != null)
         {
             //spread의 경우 target엔 pivot.position 나머지는 aim
-            bullet.SetBulletSize(statHandler.CurrentStat.bulletSize);
             bullet.Move(statHandler.CurrentStat.bulletSpeed, aim);
         }
-        projectile.SetActive(false);
     }
 
     private void OnAim(Vector2 direction)
