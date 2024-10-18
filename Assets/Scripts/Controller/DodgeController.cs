@@ -8,6 +8,7 @@ public class DodgeController : MonoBehaviour
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnLookEvent;
     public event Action OnFireEvent;       //<> 추후 수정 예정
+    public event Action OnBombEvent;
 
     private float timeSinceLastAttack = float.MaxValue;
     protected bool isAttacking;
@@ -51,5 +52,10 @@ public class DodgeController : MonoBehaviour
     public void CallFireEvent()
     {
         OnFireEvent?.Invoke();
+    }
+
+    public void CallBombEvent()
+    {
+        OnBombEvent?.Invoke();
     }
 }

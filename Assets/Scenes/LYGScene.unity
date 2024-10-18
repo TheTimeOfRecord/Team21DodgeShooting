@@ -613,6 +613,7 @@ MonoBehaviour:
   - {fileID: 1770816827}
   - {fileID: 1664657073}
   - {fileID: 2029147913}
+  statHandler: {fileID: 0}
 --- !u!1 &344336021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,6 +1636,7 @@ GameObject:
   - component: {fileID: 1191504000}
   - component: {fileID: 1191503999}
   - component: {fileID: 1191503998}
+  - component: {fileID: 1191504006}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1728,6 +1730,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat: {fileID: 11400000, guid: b9d462314123c5242a8574e8b2c08acb, type: 2}
+  itemToStatAssigner: {fileID: 0}
+  getUsableItemAssigner: {fileID: 0}
+  statModifier: []
 --- !u!114 &1191504002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,6 +1834,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1191504006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191503996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc36ea4818971c4ab96272c59591f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
 --- !u!1 &1244248815
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,6 +53,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Bomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""87d668a2-f054-449b-9ae5-1c0a73eeafb0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,6 +139,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f63e69ce-e99d-4c51-a9a8-3e1900e7f4fd"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Bomb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -263,6 +283,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player01_Move = m_Player01.FindAction("Move", throwIfNotFound: true);
         m_Player01_Look = m_Player01.FindAction("Look", throwIfNotFound: true);
         m_Player01_Fire = m_Player01.FindAction("Fire", throwIfNotFound: true);
+        m_Player01_Bomb = m_Player01.FindAction("Bomb", throwIfNotFound: true);
         // Player02
         m_Player02 = asset.FindActionMap("Player02", throwIfNotFound: true);
         m_Player02_Move = m_Player02.FindAction("Move", throwIfNotFound: true);
@@ -331,6 +352,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player01_Move;
     private readonly InputAction m_Player01_Look;
     private readonly InputAction m_Player01_Fire;
+    private readonly InputAction m_Player01_Bomb;
     public struct Player01Actions
     {
         private @PlayerInputAction m_Wrapper;
@@ -338,6 +360,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player01_Move;
         public InputAction @Look => m_Wrapper.m_Player01_Look;
         public InputAction @Fire => m_Wrapper.m_Player01_Fire;
+        public InputAction @Bomb => m_Wrapper.m_Player01_Bomb;
         public InputActionMap Get() { return m_Wrapper.m_Player01; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -356,6 +379,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @Bomb.started += instance.OnBomb;
+            @Bomb.performed += instance.OnBomb;
+            @Bomb.canceled += instance.OnBomb;
         }
 
         private void UnregisterCallbacks(IPlayer01Actions instance)
@@ -369,6 +395,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @Bomb.started -= instance.OnBomb;
+            @Bomb.performed -= instance.OnBomb;
+            @Bomb.canceled -= instance.OnBomb;
         }
 
         public void RemoveCallbacks(IPlayer01Actions instance)
@@ -454,6 +483,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnBomb(InputAction.CallbackContext context);
     }
     public interface IPlayer02Actions
     {

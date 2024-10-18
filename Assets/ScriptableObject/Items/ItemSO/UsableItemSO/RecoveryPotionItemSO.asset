@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: RecoveryPotionItemSO
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 0}
-  itemType: 0
+  itemType: 1
+  itemName: RecoveryPotionItemSO
   itemBackColor: {r: 1, g: 0.495283, b: 0.495283, a: 1}
   fontColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   itemInfoText: "\uCCB4\uB825 \uD68C\uBCF5"

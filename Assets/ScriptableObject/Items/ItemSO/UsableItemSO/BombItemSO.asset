@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: BombItemSO
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 0}
-  itemType: 0
+  itemType: 1
+  itemName: BombItemSO
   itemBackColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
   fontColor: {r: 1, g: 0.6273585, b: 0.6273585, a: 1}
   itemInfoText: "\uD3ED\uD0C4 \uD68D\uB4DD"
