@@ -8,8 +8,8 @@ public class PierceBullet : StandardBullet
     {
         //데미지 처리는 하되 파괴되지는 않는
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
-        StatHandler statHandler = GetComponent<StatHandler>();
-        healthSystem.ChangeHealth(statHandler.CurrentStat.ATK);
+        StatHandler statHandler = collision.GetComponent<StatHandler>();
+        healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
     }
 
 }

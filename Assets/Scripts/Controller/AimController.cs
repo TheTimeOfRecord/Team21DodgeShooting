@@ -6,6 +6,7 @@ using UnityEngine;
 public class AimController : MonoBehaviour
 {
     private DodgeController controller;
+    [SerializeField] private Transform mainTransform;
 
     private void Awake()
     {
@@ -25,5 +26,7 @@ public class AimController : MonoBehaviour
     private void RotateWeapon(Vector2 vector)
     {
         float rotZ = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
+        mainTransform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
     }
+
 }
