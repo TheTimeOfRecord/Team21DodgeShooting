@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum EnemyType
+{
+    StraightEnemy,
+    TracingEnemy,
+    HoveringEnemy,
+    BlinkingEnemy
+}
+
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
-
-    [SerializeField] private GameObject[] enemySpawnPoint;
-
     public ObjectPool EnemyObjectPool { get; private set; }
 
-    [SerializeField] private string enemyTag;
+    [SerializeField] private GameObject[] enemySpawnPoint;
     [SerializeField] private float spawnDelayTime;
 
+    private EnemyType enemyType;
     private bool isSpawn = true;
 
     private void Awake()
@@ -38,13 +44,21 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator MakeEnemy()
     {
-        if (EnemyObjectPool.PoolDictionary[enemyTag].Any(x => x.activeSelf == false))
+        string type = SelectRandomType();
+        if (EnemyObjectPool.PoolDictionary[type].Any(x => x.activeSelf == false))
         {
-            GameObject obj = EnemyObjectPool.GetObjectFromPool(enemyTag);
+            GameObject obj = EnemyObjectPool.GetObjectFromPool(type);
             obj.transform.position = RandomSpawnInRange();
         }
         yield return new WaitForSeconds(spawnDelayTime);
         isSpawn = true;
+    }
+
+    private string SelectRandomType()
+    {
+        int typeNum = Random.Range(0, 4);
+        string type = System.Enum.GetName(typeof(EnemyType), typeNum);
+        return type;
     }
 
     private Vector2 SelectRandomSpawnPoint()

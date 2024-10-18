@@ -50,7 +50,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  enemyTag: HoveringEnemy
   spawnDelayTime: 1
 --- !u!114 &5942979210809720813
 MonoBehaviour:
@@ -66,14 +65,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pools:
   - tag: TracingEnemy
-    prefab: {fileID: 7666657067879035701, guid: 116e183bfbaeb7c419b95b70b41eaa84, type: 3}
+    prefab: {fileID: 7666657067879035701, guid: be4413e52df9bbd42b540f67b6c17f38, type: 3}
     size: 15
   - tag: StraightEnemy
-    prefab: {fileID: 5968849177009417316, guid: ecc9dc122d6eaaa48a003d12038139aa, type: 3}
+    prefab: {fileID: 5968849177009417316, guid: 0c8dad3362bcf2543babbf59a56587bd, type: 3}
     size: 15
   - tag: HoveringEnemy
-    prefab: {fileID: 5598527576105797915, guid: 2e17655fb5f5789428f52da3778e1813, type: 3}
+    prefab: {fileID: 5598527576105797915, guid: 326263bf0e96cff4596752ea7d8c45d1, type: 3}
     size: 15
   - tag: BlinkingEnemy
-    prefab: {fileID: 7925105876300810159, guid: d1539b69a04337a4fb726ec2c1ebe432, type: 3}
+    prefab: {fileID: 7925105876300810159, guid: 75c0a3d0339241248b0ddbd007da4531, type: 3}
     size: 15
