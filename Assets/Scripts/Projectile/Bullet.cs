@@ -26,7 +26,6 @@ public abstract class Bullet : MonoBehaviour
             size = shooter.GetComponent<StatHandler>().CurrentStat.bulletSize;
             SetBulletSize(size);
         }
-        Invoke("DestroyProjectile", 5f);
     }
 
 
