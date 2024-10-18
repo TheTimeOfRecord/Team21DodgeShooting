@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSprite: {fileID: 0}
   itemType: 0
-  itemBackColor: {r: 0.3066038, g: 1, b: 0.4171999, a: 0}
-  fontColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
+  itemBackColor: {r: 0.3066038, g: 1, b: 0.4171999, a: 1}
+  fontColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   itemInfoText: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
   statInfoText: +20
   stat: 20
