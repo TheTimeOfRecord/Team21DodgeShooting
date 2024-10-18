@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class ShootingController : MonoBehaviour
@@ -10,7 +11,7 @@ public class ShootingController : MonoBehaviour
 
     private Vector2 target = Vector2.zero;
     private Vector2 aim = Vector2.zero;
-    private string bulletTag = "PlayerBasicBullet";
+    private string bulletTag = "StandardBullet";
 
     private void Awake()
     {
@@ -22,42 +23,85 @@ public class ShootingController : MonoBehaviour
     {
         controller.OnFireEvent += OnShoot;
         controller.OnLookEvent += OnAim;
+
+        if(!(transform.tag == "Player"))
+        {
+            StartCoroutine(EnermyFire());
+        }
     }
 
     private void OnShoot()
     {
         //투사체 생성
-        CreateProjectile();
+        SetProjectile();
+
     }
 
-    private void CreateProjectile()
+    private void SetProjectile()
     {
         switch (transform.tag)
         {
             case "Player":
-                bulletTag = "HomingBullet";
+                bulletTag = "SpreadBullet";
                 target = aim;
                 break;
-            case "BasicEnemy":
-                bulletTag = "EnemyBasicBullet";
+            case "StraighEnemy":
+                bulletTag = "HomingBullet";
                 break;
-            case "HomingEnemy":
-                bulletTag = "EnemyHomingBullet";
+            case "TracingEnemy":
+                bulletTag = "StandardBullet";
                 break;
+            case "HoveringEnemy":
+                bulletTag = "StandardBullet";
+                break;
+            case "BlinkingEnemy":
+                bulletTag = "SpreadBullet";
+                break;
+        }
+
+        Fire();
+    }
+
+    private void Fire()
+    {
+        if (bulletTag == "SpreadBullet")
+        {
+            //SpreadBullet일 경우에만
+            GameObject spreadBulletProjectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag);
+
+            Bullet spreadBullet = spreadBulletProjectile.GetComponent<Bullet>();
+            spreadBullet.SetShooter(this.gameObject);
+
+            if (spreadBullet != null)
+            {
+                spreadBullet.Move(statHandler.CurrentStat.bulletSpeed, pivot.position);
+            }
 
         }
-        //spread의경우 오브젝트만 나머지는 , pivot.position 추가 + setactive false로
-        GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag, pivot.position);
-
-        Bullet bullet = projectile.GetComponent<Bullet>();
-        bullet.SetShooter(this.gameObject);
-
-        if(bullet != null)
+        else
         {
-            //spread의 경우 target엔 pivot.position 나머지는 aim
-            bullet.Move(statHandler.CurrentStat.bulletSpeed, aim);
+            GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag, pivot.position);
+
+            Bullet bullet = projectile.GetComponent<Bullet>();
+            bullet.SetShooter(this.gameObject);
+
+            if (bullet != null)
+            {
+                bullet.Move(statHandler.CurrentStat.bulletSpeed, target);
+            }
         }
     }
+
+    IEnumerator EnermyFire()
+    {
+        while (transform.gameObject.activeSelf == true)
+        {
+            SetProjectile();
+            yield return WaitOneSecond;
+        }
+    }
+
+    WaitForSeconds WaitOneSecond = new WaitForSeconds(1f);
 
     private void OnAim(Vector2 direction)
     {

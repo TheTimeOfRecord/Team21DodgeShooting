@@ -216,6 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01ea7cb7a4c6074fb4d600ab295249b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletCount: 1
+  size: 1
 --- !u!114 &4764794209852571388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +235,7 @@ MonoBehaviour:
     m_Bits: 1024
   EnemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 2048

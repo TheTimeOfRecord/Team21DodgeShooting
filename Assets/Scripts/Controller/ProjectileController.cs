@@ -24,27 +24,41 @@ public class ProjectileController : MonoBehaviour
     {
         Bullet otherBullet = collision.GetComponent<Bullet>();
 
-        //총알을 쏜 주체가 맞게되는 경우
-        if (otherBullet != null && (collision.gameObject == thisBullet.shooter || thisBullet.shooter == otherBullet.shooter))
-        {
-            Physics2D.IgnoreCollision(collision, thisCollider);
-            return;
-        }
-
-        //상대방 혹은 플레이어가 맞을경우
-        if (IsLayerMatched(EnemyLayer.value, collision.gameObject.layer))
-        {
-            thisBullet.OnImpact(collision);
-        }
-        else if(IsLayerMatched(PlayerLayer.value, collision.gameObject.layer))
-        {
-            thisBullet.OnImpact(collision);
-        }
-
         //총알끼리 부딪힌 경우
-        else if (IsLayerMatched(bulletLayer.value, collision.gameObject.layer))
+        if(otherBullet != null)
         {
-            thisBullet.DestroyProjectile();
+            //총알을 쏜 주체가 동일할 경우
+            if(thisBullet.shooter == otherBullet.shooter)
+            {
+                Physics2D.IgnoreCollision(collision, thisCollider);
+                return;
+            }
+            else
+            {
+                //다른사람이 쏜 총알끼리 부딪힌경우 사라짐
+                thisBullet.DestroyProjectile();
+            }
+        }
+
+        //총알이 오브젝트를 맞출 경우
+        else
+        {
+            //총알을 쏜 주체를 맞출경우
+            if(collision.gameObject == thisBullet.shooter)
+            {
+                //충돌을 무시
+                Physics2D.IgnoreCollision(collision, thisCollider);
+                return;
+            }
+            //상대방 혹은 플레이어가 맞을경우
+            if (IsLayerMatched(EnemyLayer.value, collision.gameObject.layer))
+            {
+                thisBullet.OnImpact(collision);
+            }
+            else if (IsLayerMatched(PlayerLayer.value, collision.gameObject.layer))
+            {
+                thisBullet.OnImpact(collision);
+            }
         }
     }
 

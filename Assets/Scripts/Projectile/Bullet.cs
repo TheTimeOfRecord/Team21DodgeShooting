@@ -8,14 +8,13 @@ public abstract class Bullet : MonoBehaviour
     public float size = 1;
     protected Rigidbody2D rb;
 
-    //데미지처리, 움직임, 사이크조절 다 따로하는게 좋아보인다.
     public abstract void Move(float speed, Vector2 target);
     public virtual void OnImpact(Collider2D collision)
     {
         //해당 기체에 대미지를 준다.
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
-        StatHandler statHandler = GetComponent<StatHandler>();
-        healthSystem.ChangeHealth(statHandler.CurrentStat.ATK);
+        StatHandler statHandler = collision.GetComponent<StatHandler>();
+        healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
         DestroyProjectile();
     }
 
@@ -49,7 +48,6 @@ public abstract class Bullet : MonoBehaviour
 
     public void DestroyProjectile()
     {
-        Debug.Log("총알 파괴됨");
         gameObject.SetActive(false);
     }
 

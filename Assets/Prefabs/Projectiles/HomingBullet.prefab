@@ -221,7 +221,7 @@ MonoBehaviour:
     m_Bits: 1024
   EnemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -237,3 +237,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649732b5b969e1a4bb4f0a84aa9065ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletCount: 1
+  size: 1

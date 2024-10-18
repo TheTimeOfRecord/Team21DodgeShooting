@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
         if(instance != null && instance != this)
         {
             Destroy(gameObject);
+            return;
         }
         else
         {
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        objPool = GetComponent<ObjectPool>();
+        objPool = GameObject.FindWithTag("BulletSpawner").GetComponent<ObjectPool>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }

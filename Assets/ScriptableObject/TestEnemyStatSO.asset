@@ -16,5 +16,7 @@ MonoBehaviour:
   ATK: 10
   speed: 3
   exp: 0
-  bulltSize: 0
-  delay: 0
+  bulletSize: 1
+  bulletSpeed: 5
+  bulletNum: 10
+  attackDelay: 1
