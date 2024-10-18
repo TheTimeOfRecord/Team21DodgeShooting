@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
 {
     public GameObject shooter { get; private set; }
+    protected Rigidbody2D rb;
 
     //데미지처리, 움직임, 사이크조절 다 따로하는게 좋아보인다.
     public abstract void Move(float speed, Vector2 target);
@@ -13,6 +15,11 @@ public abstract class Bullet : MonoBehaviour
         StatHandler statHandler = GetComponent<StatHandler>();
         healthSystem.ChangeHealth(statHandler.CurrentStat.ATK);
         DestroyProjectile();
+    }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void SetShooter(GameObject _shooter)
@@ -27,7 +34,18 @@ public abstract class Bullet : MonoBehaviour
 
     public void DestroyProjectile()
     {
+        Debug.Log("총알 파괴됨");
         gameObject.SetActive(false);
+    }
+
+    public void SetDirection(Vector2 vector2)
+    {
+        rb.velocity = vector2;
+    }
+
+    public void ShootBullet(float speed, Vector2 direction)
+    {
+        rb.velocity = direction.normalized * speed;
     }
 }
 

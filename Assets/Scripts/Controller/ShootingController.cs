@@ -35,7 +35,7 @@ public class ShootingController : MonoBehaviour
         switch (transform.tag)
         {
             case "Player":
-                bulletTag = "HomingBullet";
+                bulletTag = "StandardBullet";
                 target = aim;
                 break;
             case "BasicEnemy":
@@ -58,6 +58,7 @@ public class ShootingController : MonoBehaviour
             bullet.SetBulletSize(statHandler.CurrentStat.bulletSize);
             bullet.Move(statHandler.CurrentStat.bulletSpeed, aim);
         }
+        projectile.SetActive(false);
     }
 
     private void OnAim(Vector2 direction)

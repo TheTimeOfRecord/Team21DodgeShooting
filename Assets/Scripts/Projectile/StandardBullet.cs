@@ -5,30 +5,51 @@ using UnityEngine;
 //일직선으로 날아감
 public class StandardBullet : Bullet
 {
-    private Rigidbody2D rb;
-
-    private Vector2 direction;
-
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
+    private int bulletCount = 5;
+    private float angleSpace = 5;
 
     public override void Move(float speed, Vector2 target)
     {
-        float angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg - 90f;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-        direction = target.normalized * speed;
+        float baseAngle = GetBaseAngle(target);
+        float startAngle = GetStartAngle(baseAngle);
+        FireBullets(speed, startAngle);
     }
 
-    private void FixedUpdate()
+    private float GetBaseAngle(Vector2 target)
     {
-        ApplyMove();
+        return Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
     }
 
-    private void ApplyMove()
+    private float GetStartAngle(float baseAngle)
     {
-        rb.velocity = direction;
+        return baseAngle - (bulletCount - 1) / 2f * angleSpace;
+    }
+
+    private void FireBullets(float speed, float startAngle)
+    {
+        for (int i = 0; i < bulletCount; i++)
+        {
+            float currentAngle = startAngle + i * angleSpace;
+
+            // 총알 생성
+            GameObject newBullet = GameManager.Instance.objPool.GetObjectFromPool("StandardBullet", this.transform.position);
+            Bullet bulletComponent = newBullet.GetComponent<Bullet>();
+
+            // 발사자 설정
+            bulletComponent.SetShooter(shooter);
+
+            // 방향 계산 및 총알 발사
+            Vector2 direction = CalculateDirection(currentAngle);
+
+            // 각도에 따른 회전 설정
+            bulletComponent.transform.up = direction;
+
+            bulletComponent.ShootBullet(speed, direction);  // ShootBullet 호출
+        }
+    }
+
+    private Vector2 CalculateDirection(float angle)
+    {
+        return new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
     }
 }
