@@ -46,15 +46,19 @@ public class ShootingController : MonoBehaviour
                 target = aim;
                 break;
             case "StraighEnemy":
+                target = GameManager.Instance.Player.position;
                 bulletTag = "HomingBullet";
                 break;
             case "TracingEnemy":
-                bulletTag = "StandardBullet";
+                target = GameManager.Instance.Player.position;
+                bulletTag = "PierceBullet";
                 break;
             case "HoveringEnemy":
+                target = GameManager.Instance.Player.position;
                 bulletTag = "StandardBullet";
                 break;
             case "BlinkingEnemy":
+                target = GameManager.Instance.Player.position;
                 bulletTag = "SpreadBullet";
                 break;
         }
