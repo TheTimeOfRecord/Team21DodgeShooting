@@ -8,6 +8,10 @@ TagManager:
   - PlayerArea
   - BtnStatText
   - BtnOptionText
+  - StraightEnemy
+  - TracingEnemy
+  - HoveringEnemy
+  - BlinkingEnemy
   layers:
   - Default
   - TransparentFX
@@ -21,7 +25,7 @@ TagManager:
   - 
   - Bullet
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 
