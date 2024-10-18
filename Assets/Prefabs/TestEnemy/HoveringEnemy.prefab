@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 2332612103345830142}
   - component: {fileID: 6081842320110055822}
   - component: {fileID: 8562552749074025730}
+  - component: {fileID: -4386758119168710487}
   m_Layer: 12
   m_Name: HoveringEnemy
   m_TagString: HoveringEnemy
@@ -246,3 +247,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 7346544440376632364}
+--- !u!114 &-4386758119168710487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598527576105797915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc36ea4818971c4ab96272c59591f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5

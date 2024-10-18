@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 4592834126221150851}
   - component: {fileID: 7919983851037673645}
   - component: {fileID: 3085626353321589557}
+  - component: {fileID: -2537073743600719796}
   m_Layer: 12
   m_Name: StraightEnemy
   m_TagString: StraightEnemy
@@ -244,3 +245,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 8677313659988370697}
+--- !u!114 &-2537073743600719796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968849177009417316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc36ea4818971c4ab96272c59591f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5

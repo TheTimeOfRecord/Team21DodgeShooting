@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 1658616293258392723}
   - component: {fileID: 3346121729782684286}
   - component: {fileID: 928198531818762366}
+  - component: {fileID: -6809698521151120254}
   m_Layer: 12
   m_Name: TracingEnemy
   m_TagString: TracingEnemy
@@ -244,3 +245,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 7149543994293851816}
+--- !u!114 &-6809698521151120254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666657067879035701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afc36ea4818971c4ab96272c59591f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthChangeDelay: 0.5
