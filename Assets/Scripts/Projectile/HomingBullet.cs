@@ -9,15 +9,18 @@ public class HomingBullet : Bullet
     public override void Move(float speed, Vector2 target)
     {
         bulletSpeed = speed;
-
-        direction = (GameManager.Instance.Player.position - transform.position).normalized;
-
-        transform.up = direction;
-
     }
 
     private void FixedUpdate()
     {
+        ApplyMove();
+    }
+
+    private void ApplyMove()
+    {
+        direction = (GameManager.Instance.Player.position - transform.position).normalized;
+
+        transform.up = direction;
         rb.velocity = direction * bulletSpeed;
     }
 }

@@ -14,6 +14,7 @@ public class StraightEnemyController : EnemyController
     {
         base.FixedUpdate();
 
+
         if (!isSpawn && gameObject.activeSelf)
         {
             SetDirection();
@@ -21,6 +22,13 @@ public class StraightEnemyController : EnemyController
 
         RotateToTarget(direction);
         CallMoveEvent(direction);
+
+        float distance = DistanceToTarget();
+        if (distance > 25)
+        {
+            gameObject.SetActive(false);
+            isSpawn = false;
+        }
     }
 
     private void SetDirection()

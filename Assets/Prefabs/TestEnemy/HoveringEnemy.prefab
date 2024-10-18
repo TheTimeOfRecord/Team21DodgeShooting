@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 263052907321722946}
   - component: {fileID: 8179483897639387403}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,9 +98,10 @@ GameObject:
   - component: {fileID: 3418834542129767914}
   - component: {fileID: 2332612103345830142}
   - component: {fileID: 6081842320110055822}
-  m_Layer: 0
+  - component: {fileID: 8562552749074025730}
+  m_Layer: 12
   m_Name: HoveringEnemy
-  m_TagString: Untagged
+  m_TagString: HoveringEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1618b4c90129a8c4da39357ceff3dd8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 3
+  Range: 4
   speed: 3
 --- !u!114 &2332612103345830142
 MonoBehaviour:
@@ -232,3 +233,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat: {fileID: 11400000, guid: e95537e4f91128643978eeb023f1606d, type: 2}
+--- !u!114 &8562552749074025730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598527576105797915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a8388a92c263b4098d7c75651a34ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 7346544440376632364}

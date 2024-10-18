@@ -4,6 +4,7 @@ using UnityEngine;
 public class BlinkingEnemyController : EnemyController
 {
     private bool canBlink;
+    [SerializeField] private float blinkDelayTime;
 
     protected override void Start()
     {
@@ -18,6 +19,7 @@ public class BlinkingEnemyController : EnemyController
 
         if (canBlink)
         {
+            canBlink = false;
             StartCoroutine(BlinkCoroutine());
         }
     }
@@ -25,8 +27,7 @@ public class BlinkingEnemyController : EnemyController
     IEnumerator BlinkCoroutine()
     {
         Blink();
-        canBlink = false;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(blinkDelayTime);
         canBlink = true;
     }
 
