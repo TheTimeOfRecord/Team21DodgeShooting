@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7455169952710231482}
   - component: {fileID: 685882320571388262}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,9 +97,10 @@ GameObject:
   - component: {fileID: 5582225189801234554}
   - component: {fileID: 6106940772653038458}
   - component: {fileID: 6323526525519639453}
-  m_Layer: 0
+  - component: {fileID: 6918599675247812674}
+  m_Layer: 12
   m_Name: BlinkingEnemy
-  m_TagString: Untagged
+  m_TagString: BlinkingEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,3 +219,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat: {fileID: 11400000, guid: e95537e4f91128643978eeb023f1606d, type: 2}
+--- !u!114 &6918599675247812674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925105876300810159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a8388a92c263b4098d7c75651a34ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 1645553988317215087}
