@@ -9,6 +9,11 @@ public class BlinkingEnemyController : EnemyController
     protected override void Start()
     {
         base.Start();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         canBlink = true;
     }
 
@@ -33,22 +38,15 @@ public class BlinkingEnemyController : EnemyController
 
     private void Blink()
     {
-        float x;
-        float y;
-        while (true)
-        {
-            x = Random.Range(-5f, 5f);
-            y = Random.Range(-3f, 7.5f);
+        float x = Random.Range(-5f, 5f);
+        float y = Random.Range(-5f, 5f);
 
-            if ((x > -1 && x < 1) && (y > -1 && y < 1))
-            {
-                continue;
-            }
-            else
-            {
-                break;
-            }
+        if ((x > -2 && x < 2) && (y > -2 && y < 2))
+        {
+            x = 3f;
+            y = 3f;
         }
+
         transform.position = AttackTarget.position + new Vector3(x, y, 0f);
     }
 }

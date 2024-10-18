@@ -7,6 +7,11 @@ public class StraightEnemyController : EnemyController
     protected override void Start()
     {
         base.Start();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         direction = DirectionToTarget();
     }
 

@@ -10,6 +10,11 @@ public class TracingEnemyController : EnemyController
         base.Start();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

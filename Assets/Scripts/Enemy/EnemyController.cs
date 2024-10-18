@@ -5,14 +5,19 @@ using UnityEngine;
 public class EnemyController : DodgeController
 {
     protected Transform AttackTarget { get; private set; }
-
     protected Vector2 direction;
+    protected StatHandler statHandler;
 
     // [SerializeField] private string targetTag = "Player";
 
     protected override void Awake()
     {
         base.Awake();
+    }
+
+    protected virtual void OnEnable()
+    {
+
     }
 
     protected virtual void Start()
