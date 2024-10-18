@@ -26,13 +26,12 @@ public abstract class Bullet : MonoBehaviour
             size = shooter.GetComponent<StatHandler>().CurrentStat.bulletSize;
             SetBulletSize(size);
         }
-    }
 
-
-    private void Awake()
-    {
         rb = GetComponent<Rigidbody2D>();
+
     }
+
+
 
     public void SetShooter(GameObject _shooter)
     {

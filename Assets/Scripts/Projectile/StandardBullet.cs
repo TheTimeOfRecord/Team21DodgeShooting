@@ -6,11 +6,20 @@ using UnityEngine;
 public class StandardBullet : Bullet
 {
     private float angleSpace = 5;
+    private float baseAngle = 0;
 
     public override void Move(float speed, Vector2 target)
     {
         gameObject.SetActive(false);
-        float baseAngle = GetBaseAngle(target);
+        if (shooter.CompareTag("Player"))
+        {
+            baseAngle = GetBaseAngle(target);
+        }
+        else
+        {
+            baseAngle = GetBaseAngle((target - (Vector2)transform.position).normalized);
+        }
+
         float startAngle = GetStartAngle(baseAngle);
         FireBullets(speed, startAngle);
     }
