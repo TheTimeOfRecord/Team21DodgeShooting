@@ -43,6 +43,7 @@ public class PierceBullet : Bullet
             // 각도에 따른 회전 설정
             bulletComponent.transform.up = direction;
 
+
             bulletComponent.ShootBullet(speed, direction);  // ShootBullet 호출
         }
     }

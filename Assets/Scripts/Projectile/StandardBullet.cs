@@ -54,6 +54,7 @@ public class StandardBullet : Bullet
             bulletComponent.transform.up = direction;
 
             bulletComponent.ShootBullet(speed, direction);  // ShootBullet 호출
+
         }
     }
 
