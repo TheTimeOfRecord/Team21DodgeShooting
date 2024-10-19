@@ -8,6 +8,7 @@ public class HomingBullet : Bullet
 
     public override void Move(float speed, Vector2 target)
     {
+        direction = (target - (Vector2)transform.position).normalized;
         bulletSpeed = speed;
     }
 

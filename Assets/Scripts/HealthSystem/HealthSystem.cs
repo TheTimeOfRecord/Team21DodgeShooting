@@ -5,7 +5,7 @@ public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private float healthChangeDelay = 0.5f;
 
-    private StatHandler statHandler;
+    public StatHandler statHandler;
     private float timeSinceLastChange = float.MaxValue;
     private bool isAttacked;
 
@@ -55,6 +55,7 @@ public class HealthSystem : MonoBehaviour
         if (CurrentHealth <= 0f)
         {
             CallDeath();
+            return true;
         }
         if (amount > 0)
         {
@@ -70,6 +71,13 @@ public class HealthSystem : MonoBehaviour
     private void CallDeath()
     {
         OnDeath?.Invoke();
+    }
+
+    public void ResetHealth()
+    {
+        CurrentHealth = MaxHealth;
+        isAttacked = false;
+        timeSinceLastChange = float.MaxValue;
     }
 }
 

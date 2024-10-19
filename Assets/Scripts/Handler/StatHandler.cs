@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class StatHandler : MonoBehaviour
@@ -19,8 +19,35 @@ public class StatHandler : MonoBehaviour
         CurrentStat = (HealthStatSO)baseStat.Clone();
     }
 
-    public void ModifiyCharacterStat(ItemSO itemSO)
+    public void ChangeCharacterStat(stats stat, float amount)
     {
-        itemToStatAssigner.ModifyStatBasedOnItem(itemSO, CurrentStat);
+        switch (stat)
+        {
+            case stats.maxHP:
+                CurrentStat.maxHP += amount;
+                break;
+            case stats.ATK:
+                CurrentStat.ATK += amount;
+                break;
+            case stats.bulletSize:
+                CurrentStat.bulletSize = amount;
+                break;
+            case stats.bulletSpeed:
+                CurrentStat.bulletSpeed = amount;
+                break;
+            case stats.bulletNum:
+                CurrentStat.bulletNum = (int)amount;
+                break;
+        }
     }
+
+}
+
+public enum stats
+{
+    maxHP,
+    ATK,
+    bulletSize,
+    bulletSpeed,
+    bulletNum
 }

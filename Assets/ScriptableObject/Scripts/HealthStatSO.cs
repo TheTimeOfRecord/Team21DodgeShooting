@@ -27,3 +27,5 @@ public enum needExp
 {
     //레벨업에 필요한 경험치량을 정해둡니다.
 }
+
+

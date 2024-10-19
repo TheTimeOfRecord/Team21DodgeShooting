@@ -117,15 +117,15 @@ GameObject:
   - component: {fileID: 8104688136964941172}
   - component: {fileID: 249246914548441264}
   - component: {fileID: 3915358440328365050}
-  - component: {fileID: 7189595203196468822}
   - component: {fileID: 4764794209852571388}
+  - component: {fileID: 7189595203196468822}
   m_Layer: 10
   m_Name: StandardBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8104688136964941172
 Transform:
   m_ObjectHideFlags: 0
@@ -204,20 +204,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.00030819327, y: -0.0000673756}
   m_Size: {x: 0.06525661, y: 0.12512426}
   m_Direction: 0
---- !u!114 &7189595203196468822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7898381357871337657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01ea7cb7a4c6074fb4d600ab295249b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletCount: 1
-  size: 1
 --- !u!114 &4764794209852571388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,3 +225,17 @@ MonoBehaviour:
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &7189595203196468822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898381357871337657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01ea7cb7a4c6074fb4d600ab295249b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletCount: 1
+  size: 1

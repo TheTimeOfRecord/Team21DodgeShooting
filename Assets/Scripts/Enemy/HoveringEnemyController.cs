@@ -6,7 +6,6 @@ public class HoveringEnemyController : EnemyController
     [SerializeField, Range(1f, 5f)] private float Range;
     private float rad;
     private bool isRanged;
-    private bool isSpawn;
     private Vector2 initDirectionInRange;
 
     // 추후 Stat의 Speed로 변환 예정
@@ -15,19 +14,17 @@ public class HoveringEnemyController : EnemyController
     protected override void Start()
     {
         base.Start();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         isRanged = false;
-        isSpawn = false;
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-
-        if (!isSpawn && gameObject.activeSelf)
-        {
-            isRanged = false;
-            isSpawn = true;
-        }
 
         direction = DirectionToTarget();
 
