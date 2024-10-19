@@ -40,7 +40,10 @@ public class StatHandler : MonoBehaviour
                 break;
         }
     }
-
+    public void ModifiyCharacterStat(ItemSO itemSO)
+    {
+        itemToStatAssigner.ModifyStatBasedOnItem(itemSO, CurrentStat);
+    }
 }
 
 public enum stats
