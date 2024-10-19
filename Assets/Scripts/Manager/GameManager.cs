@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,9 +40,24 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        FindPlayer();
         objPool = GameObject.FindWithTag("BulletSpawner").GetComponent<ObjectPool>();
 
         EnemyDeathCount = 0;
+    }
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += OnBossSceneLoaded;
+    }
+
+    private void OnBossSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        FindPlayer();
+    }
+
+    private void FindPlayer()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }
