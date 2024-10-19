@@ -13,7 +13,7 @@ public abstract class Bullet : MonoBehaviour
     {
         //해당 기체에 대미지를 준다.
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
-        StatHandler statHandler = collision.GetComponent<StatHandler>();
+        StatHandler statHandler = shooter.GetComponent<StatHandler>();
         healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
         DestroyProjectile();
     }

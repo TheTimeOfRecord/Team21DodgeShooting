@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public ObjectPool objPool { get; private set; }
     public Transform Player { get; private set; }
 
+    public int EnemyDeathCount;
+
     public static GameManager Instance
     {
         get
@@ -38,5 +40,7 @@ public class GameManager : MonoBehaviour
 
         objPool = GameObject.FindWithTag("BulletSpawner").GetComponent<ObjectPool>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        EnemyDeathCount = 0;
     }
 }

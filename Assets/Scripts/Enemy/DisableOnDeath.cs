@@ -5,20 +5,22 @@ using UnityEngine;
 public class DisableOnDeath : MonoBehaviour
 {
     private HealthSystem healthSystem;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rb;
 
     private void Start()
     {
         healthSystem = GetComponent<HealthSystem>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         healthSystem.OnDeath += OnDeath;
     }
 
     private void OnDeath()
     {
-        Debug.Log("Á×À½");
-        rigidbody.velocity = Vector2.zero;
+        rb.velocity = Vector2.zero;
         
+        GameManager.Instance.EnemyDeathCount++;
+        Debug.Log("Count = " + GameManager.Instance.EnemyDeathCount);
+
         // ÆÄ±«µÇ´Â Animation
 
         gameObject.SetActive(false);

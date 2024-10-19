@@ -27,6 +27,12 @@ public class HealthSystem : MonoBehaviour
         CurrentHealth = MaxHealth;
     }
 
+    private void OnEnable()
+    {
+        statHandler = GetComponent<StatHandler>();
+        CurrentHealth = statHandler.CurrentStat.maxHP;
+    }
+
     private void Update()
     {
         if(isAttacked && timeSinceLastChange < healthChangeDelay)
