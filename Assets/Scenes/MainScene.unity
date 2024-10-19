@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa31a53aafb58348944e8dedcb64d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnemyDeathCount: 0
 --- !u!4 &159288114
 Transform:
   m_ObjectHideFlags: 0
@@ -1824,7 +1825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2490875584657028360, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2977331169629327043, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
       propertyPath: m_Layer
@@ -1832,7 +1833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2977331169629327043, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4773404291136139283, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
       propertyPath: m_Layer

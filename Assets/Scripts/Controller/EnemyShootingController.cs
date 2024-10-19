@@ -18,11 +18,13 @@ public class EnemyShootingController : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke("SetProjectile", 2f);
+        if (gameObject.activeSelf)
+            SetProjectile();
     }
 
     private void SetProjectile()
     {
+        if(gameObject.activeSelf)
         switch (transform.tag)
         {
             case "StraightEnemy":
@@ -69,7 +71,7 @@ public class EnemyShootingController : MonoBehaviour
 
     IEnumerator EnermyFire(string bulletTag)
     {
-        while (transform.gameObject.activeSelf == true)
+        while (gameObject.activeSelf == true)
         {
             GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag, pivot.position);
 

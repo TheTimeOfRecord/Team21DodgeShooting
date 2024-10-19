@@ -38,8 +38,8 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        objPool = GameObject.FindWithTag("BulletSpawner").GetComponent<ObjectPool>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        objPool = GameObject.FindWithTag("BulletSpawner").GetComponent<ObjectPool>();
 
         EnemyDeathCount = 0;
     }

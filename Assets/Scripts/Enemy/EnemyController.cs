@@ -13,6 +13,7 @@ public class EnemyController : DodgeController
     protected override void Awake()
     {
         base.Awake();
+        AttackTarget = GameManager.Instance.Player;
     }
 
     protected virtual void OnEnable()
@@ -22,7 +23,6 @@ public class EnemyController : DodgeController
 
     protected virtual void Start()
     {
-        AttackTarget = GameManager.Instance.Player;
     }
 
     protected virtual void FixedUpdate()

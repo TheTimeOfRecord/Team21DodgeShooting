@@ -11,8 +11,12 @@ public class DisableOnDeath : MonoBehaviour
     {
         healthSystem = GetComponent<HealthSystem>();
         rb = GetComponent<Rigidbody2D>();
+        healthSystem.OnDeath -= OnDeath;
+
         healthSystem.OnDeath += OnDeath;
     }
+
+    
 
     private void OnDeath()
     {
@@ -23,6 +27,8 @@ public class DisableOnDeath : MonoBehaviour
 
         // ÆÄ±«µÇ´Â Animation
 
+        healthSystem.ResetHealth();
         gameObject.SetActive(false);
+
     }
 }
