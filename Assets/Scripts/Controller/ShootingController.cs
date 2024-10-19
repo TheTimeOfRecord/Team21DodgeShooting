@@ -9,9 +9,7 @@ public class ShootingController : MonoBehaviour
     private DodgeController controller;
     private StatHandler statHandler;
 
-    private Vector2 target = Vector2.zero;
     private Vector2 aim = Vector2.zero;
-    private string bulletTag = "StandardBullet";
 
     private void Awake()
     {
@@ -23,11 +21,6 @@ public class ShootingController : MonoBehaviour
     {
         controller.OnFireEvent += OnShoot;
         controller.OnLookEvent += OnAim;
-
-        if(!(transform.tag == "Player"))
-        {
-            StartCoroutine(EnermyFire());
-        }
     }
 
     private void OnShoot()
@@ -39,73 +32,22 @@ public class ShootingController : MonoBehaviour
 
     private void SetProjectile()
     {
-        switch (transform.tag)
-        {
-            case "Player":
-                bulletTag = "SpreadBullet";
-                target = aim;
-                break;
-            case "StraighEnemy":
-                target = GameManager.Instance.Player.position;
-                bulletTag = "HomingBullet";
-                break;
-            case "TracingEnemy":
-                target = GameManager.Instance.Player.position;
-                bulletTag = "PierceBullet";
-                break;
-            case "HoveringEnemy":
-                target = GameManager.Instance.Player.position;
-                bulletTag = "StandardBullet";
-                break;
-            case "BlinkingEnemy":
-                target = GameManager.Instance.Player.position;
-                bulletTag = "SpreadBullet";
-                break;
-        }
-
         Fire();
     }
 
     private void Fire()
     {
-        if (bulletTag == "SpreadBullet")
+        GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool("StandardBullet", pivot.position);
+
+        Bullet bullet = projectile.GetComponent<Bullet>();
+        bullet.SetShooter(this.gameObject);
+
+        if (bullet != null)
         {
-            //SpreadBullet일 경우에만
-            GameObject spreadBulletProjectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag);
-
-            Bullet spreadBullet = spreadBulletProjectile.GetComponent<Bullet>();
-            spreadBullet.SetShooter(this.gameObject);
-
-            if (spreadBullet != null)
-            {
-                spreadBullet.Move(statHandler.CurrentStat.bulletSpeed, pivot.position);
-            }
-
-        }
-        else
-        {
-            GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag, pivot.position);
-
-            Bullet bullet = projectile.GetComponent<Bullet>();
-            bullet.SetShooter(this.gameObject);
-
-            if (bullet != null)
-            {
-                bullet.Move(statHandler.CurrentStat.bulletSpeed, target);
-            }
+            bullet.Move(statHandler.CurrentStat.bulletSpeed, aim);
         }
     }
 
-    IEnumerator EnermyFire()
-    {
-        while (transform.gameObject.activeSelf == true)
-        {
-            SetProjectile();
-            yield return WaitOneSecond;
-        }
-    }
-
-    WaitForSeconds WaitOneSecond = new WaitForSeconds(1f);
 
     private void OnAim(Vector2 direction)
     {

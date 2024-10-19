@@ -1663,9 +1663,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 2490875584657028360, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2977331169629327043, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2977331169629327043, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4773404291136139283, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
       propertyPath: m_Layer
@@ -1682,6 +1690,10 @@ PrefabInstance:
     - target: {fileID: 6197655491233469226, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180256846781597824, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8197618916240132579, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
       propertyPath: m_LocalPosition.x

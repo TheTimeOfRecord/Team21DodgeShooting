@@ -8,6 +8,8 @@ public class HomingBullet : Bullet
 
     public override void Move(float speed, Vector2 target)
     {
+        Debug.Log("Homing 발사" + shooter);
+        direction = (target - (Vector2)transform.position).normalized;
         bulletSpeed = speed;
     }
 
