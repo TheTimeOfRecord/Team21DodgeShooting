@@ -31,11 +31,16 @@ public class RepositionBackGround : MonoBehaviour
 
         if(diffX > diffY)
         {
-            transform.Translate(Vector2.right * dirX * 32.2f);
+            transform.Translate(Vector2.right * dirX * 32.4f);
         }
         else if(diffX < diffY)
         {
-            transform.Translate(Vector2.up * dirY * 32.2f);
+            transform.Translate(Vector2.up * dirY * 32.4f);
+        }
+        else
+        {
+            Vector2 diagonalDirection = new Vector2(dirX > 0 ? 1 : -1, dirY > 0 ? 1 : -1);
+            transform.Translate(diagonalDirection * 32.4f);
         }
     }
 }
