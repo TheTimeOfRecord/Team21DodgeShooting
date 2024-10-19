@@ -8,9 +8,6 @@ public class StatHandler : MonoBehaviour
     public HealthStatSO CurrentStat { get; private set; }
 
     public ItemToStatAssigner itemToStatAssigner;
-    public GetUsableItemAssigner getUsableItemAssigner;
-
-    public List<HealthStatSO> statModifier = new List<HealthStatSO>();
 
     private void Awake()
     {

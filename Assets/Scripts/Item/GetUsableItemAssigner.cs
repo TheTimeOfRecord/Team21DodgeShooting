@@ -23,8 +23,8 @@ public class GetUsableItemAssigner : MonoBehaviour
     public void GetBomb(float itemStat, HealthStatSO currentStat)
     {
         // TODO : itemStat으로 폭탄의 데미지를 조정한다.
-        currentStat.bombNum += 1;
-        Debug.Log("Use Bomb");
+        // 플레이어의 Bomb의 개수를 관리하는 곳에 Bomb +1
+        Debug.Log("Get Bomb");
     }
 
 }
