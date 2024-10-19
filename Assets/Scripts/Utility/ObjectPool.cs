@@ -29,6 +29,7 @@ public class ObjectPool : MonoBehaviour
             }
             PoolDictionary.Add(pool.tag, objectPool);
         }
+        Debug.Log("초기화종료");
     }
 
     public GameObject GetObjectFromPool(string tag, Vector2 position)

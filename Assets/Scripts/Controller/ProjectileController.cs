@@ -47,9 +47,13 @@ public class ProjectileController : MonoBehaviour
         {
             Physics2D.IgnoreCollision(collision, thisCollider);
         }
+        // 적이 쏜 총알끼리 부딪힌 경우 충돌 무시
+        else if(IsLayerMatched(EnemyLayer.value, thisBullet.shooter.layer) && IsLayerMatched(EnemyLayer.value, otherBullet.shooter.layer))
+        {
+            Physics2D.IgnoreCollision(collision, thisCollider);
+        }
         else
         {
-            Debug.Log("다른 사람이 쏜 총알끼리 부딪힌 경우, 총알이 파괴됨");
             thisBullet.DestroyProjectile();
         }
     }
@@ -57,16 +61,18 @@ public class ProjectileController : MonoBehaviour
     // 총알이 다른 오브젝트에 부딪힌 경우 처리
     private void HandleObjectCollision(Collider2D collision)
     {
-        // 적군이 쏜 총알이 플레이어 오브젝트에 맞은 경우
-        if (thisBullet.shooter.layer == EnemyLayer.value && IsLayerMatched(PlayerLayer.value, collision.gameObject.layer))
+        if(thisBullet.shooter == null)
         {
-            Debug.Log("적의 총알이 플레이어를 맞춤");
+            Debug.Log("thisbullet.shooter is null" + thisBullet);
+        }
+        // 적군이 쏜 총알이 플레이어 오브젝트에 맞은 경우
+        if (IsLayerMatched(EnemyLayer.value, thisBullet.shooter.layer) && IsLayerMatched(PlayerLayer.value, collision.gameObject.layer))
+        {
             thisBullet.OnImpact(collision);
         }
         // 플레이어가 쏜 총알이 적군 오브젝트에 맞은 경우
-        else if (thisBullet.shooter.layer == PlayerLayer.value && IsLayerMatched(EnemyLayer.value, collision.gameObject.layer))
+        else if (IsLayerMatched(PlayerLayer.value, thisBullet.shooter.layer) && IsLayerMatched(EnemyLayer.value, collision.gameObject.layer))
         {
-            Debug.Log("플레이어의 총알이 적을 맞춤");
             thisBullet.OnImpact(collision);
         }
         else

@@ -44,6 +44,7 @@ public class SpreadBullet : Bullet
 
                 bulletRb.velocity = bulletMoveDirection * bulletSpeed;
 
+
                 angle += angleStep;
             }
         }
