@@ -17,6 +17,6 @@ MonoBehaviour:
   speed: 5
   exp: 0
   bulletSize: 2
-  bulletSpeed: 5
-  bulletNum: 10
+  bulletSpeed: 10
+  bulletNum: 5
   attackDelay: 0.2

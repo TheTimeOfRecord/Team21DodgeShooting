@@ -29,6 +29,8 @@ public abstract class Bullet : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
+        Invoke("DestroyProjectile", 10f);
+
     }
 
 

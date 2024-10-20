@@ -934,25 +934,15 @@ MonoBehaviour:
   - {fileID: 446231223}
   - {fileID: 1486436226}
   OutsidePositions:
-  - {fileID: 0}
   - {fileID: 397245407}
-  - {fileID: 0}
   - {fileID: 1614752676}
-  - {fileID: 0}
   - {fileID: 1106911866}
-  - {fileID: 0}
   - {fileID: 143391541}
-  - {fileID: 0}
   - {fileID: 1054988077}
-  - {fileID: 0}
   - {fileID: 1595942968}
-  - {fileID: 0}
   - {fileID: 368277180}
-  - {fileID: 0}
   - {fileID: 1762459300}
-  - {fileID: 0}
   - {fileID: 1469532514}
-  - {fileID: 0}
   - {fileID: 2044823157}
   inputAsset: {fileID: -944628639613478452, guid: 32316d82326d9b64caf9fa435bd4d176, type: 3}
   maxPatternCount: 02000000020000000a0000000200000002000000

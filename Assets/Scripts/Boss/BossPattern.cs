@@ -138,8 +138,8 @@ public class BossPattern : MonoBehaviour
 
     private void ThirdPattern()     //원형으로 마구마구 퍼지는 패턴
     {
-        statHandler.ChangeCharacterStat(stats.bulletSpeed, 0.5f);
-        SpreadBullets(30);
+        statHandler.ChangeCharacterStat(stats.bulletSpeed, 1f);
+        StartCoroutine(SpreadBullets(30));
 
         currentPatternCount++;
         if (currentPatternCount < maxPatternCount[patternIndex])
@@ -149,7 +149,7 @@ public class BossPattern : MonoBehaviour
         else
         {
             patternIndex++;
-            Invoke("Think", 3f);
+            Invoke("Think", 5f);
         }
     }
 
@@ -157,10 +157,9 @@ public class BossPattern : MonoBehaviour
     private void FourthPattern()      //화면 밖에서 총알 발사
     {
         statHandler.ChangeCharacterStat(stats.bulletSpeed, 2f);
-        statHandler.ChangeCharacterStat(stats.bulletSize, 3f);
         for (int i = 0; i < OutsidePositions.Length; i++)
         {
-            razor(30);
+            StartCoroutine(Razor(5));
         }
 
 
@@ -172,31 +171,30 @@ public class BossPattern : MonoBehaviour
         else
         {
             patternIndex++;
-            Invoke("Think", 3f);
+            Invoke("Think", 5f);
         }
     }
 
     private void FifthPattern()     //화면밖에서 몬스터 소환과 동시에 탄환발사
     {
         Debug.Log("화면 밖에서 몬스터 소환과 동시에 탄환 발사할건데 일단 3번패턴과 동일");
-        statHandler.ChangeCharacterStat(stats.bulletSpeed, 1f);
-        statHandler.ChangeCharacterStat(stats.bulletSize, 1f);
+        statHandler.ChangeCharacterStat(stats.bulletSpeed, 2f);
         for (int i = 0; i < OutsidePositions.Length; i++)
         {
             StartCoroutine(SummonAllMonsters());
-            razor(30);
+            StartCoroutine(Razor(5));
             SpreadBullets(50);
         }
 
         currentPatternCount++;
         if (currentPatternCount < maxPatternCount[patternIndex])
         {
-            Invoke("FifthPattern", 10);
+            Invoke("FifthPattern", 20);
         }
         else
         {
             patternIndex = 0;
-            Invoke("Think", 3f);
+            Invoke("Think", 5f);
         }
     }
 
@@ -215,7 +213,7 @@ public class BossPattern : MonoBehaviour
 
             if (bullet != null)
             {
-                bullet.Move(statHandler.CurrentStat.bulletSpeed, WeaponPivots[i].position + Vector3.down*5000);
+                bullet.Move(statHandler.CurrentStat.bulletSpeed, WeaponPivots[i].position + Vector3.down*1000);
             }
         }
     }
@@ -240,7 +238,7 @@ public class BossPattern : MonoBehaviour
         }
     }
 
-    private void SpreadBullets(float bulletNumber)
+    private IEnumerator SpreadBullets(float bulletNumber)
     {
         //원형탄막 발사
         statHandler.ChangeCharacterStat(stats.bulletNum, bulletNumber);
@@ -256,10 +254,12 @@ public class BossPattern : MonoBehaviour
             {
                 spreadBullet.Move(statHandler.CurrentStat.bulletSpeed, WeaponPivots[i].position);
             }
+
+            yield return null;
         }
     }
 
-    private void razor(float bulletNumber)
+    private IEnumerator Razor(float bulletNumber)
     {
         //PierceBullet number만큼 발사
         statHandler.ChangeCharacterStat(stats.bulletNum, bulletNumber);
@@ -274,8 +274,9 @@ public class BossPattern : MonoBehaviour
             {
                 Vector2 target = GameManager.Instance.Player.position;
                 bullet.SetShooter(this.gameObject);
-                bullet.Move(statHandler.CurrentStat.bulletSpeed, target);
+                bullet.Move(statHandler.CurrentStat.bulletSpeed, WeaponPivots[i].position + Vector3.down * 1000);
             }
+            yield return wait;
         }
     }
 
@@ -293,6 +294,6 @@ public class BossPattern : MonoBehaviour
     }
 
 
-    WaitForSeconds wait = new WaitForSeconds(0.1f);
+    WaitForSeconds wait = new WaitForSeconds(0.5f);
 
 }
