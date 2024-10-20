@@ -2,36 +2,40 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class BossController : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private Button RetryBtn;
+    [SerializeField] private TMP_Text killtext;
 
     private Vector3 screenOffset = new Vector3(0.5f, 0.5f, 10);
 
     private Animator animCtrl;
-    private HealthSystem healthSystem;
 
     private void Awake()
     {
         animCtrl = GetComponentInChildren<Animator>();
-        healthSystem = GetComponent<HealthSystem>();
         Invoke("OnBossLoadEnd", 3);
+        RetryBtn.onClick.AddListener(Retry);
     }
 
-    private void Start()
+    private void Update()
     {
-        healthSystem.OnDeath += BossDead;
-    }
-
-    private void BossDead()
-    {
-        animCtrl.SetTrigger("OnBossDead");
+        killtext.text = $"You Killed {GameManager.Instance.EnemyDeathCount}";
     }
 
     private void OnBossLoadEnd()
     {
         animCtrl.SetBool("isEndLoad", true);
+    }
+
+    private void Retry()
+    {
+        SceneManager.LoadScene("PlayerChooseScene");
     }
 
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ public class BossPattern : MonoBehaviour
     [SerializeField] private Transform[] WeaponPivots;      //1, 3, 2, 0순서, 5,4은 날개 끝자락
     [SerializeField] private Transform[] OutsidePositions;
     [SerializeField] private InputActionAsset inputAsset;
+    [SerializeField] private GameObject clearUICanvas;
 
     private HealthSystem healthSystem;
     private StatHandler statHandler;
@@ -55,12 +57,15 @@ public class BossPattern : MonoBehaviour
     {
         isAlive = false;
         anim.SetTrigger("OnBossDead");
+        moveAction.Disable();
+        fireAction.Disable();
         Invoke("DisappearBoss", 4.2f);
     }
 
     private void DisappearBoss()
     {
         gameObject.SetActive(false);
+        clearUICanvas.SetActive(true);
     }
 
     private void Think()
