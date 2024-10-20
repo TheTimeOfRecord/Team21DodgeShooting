@@ -8,6 +8,8 @@ public abstract class Bullet : MonoBehaviour
     public float size = 1;
     protected Rigidbody2D rb;
 
+    public float knockbackPower = 1;
+
     public abstract void Move(float speed, Vector2 target);
     public virtual void OnImpact(Collider2D collision)
     {
@@ -16,6 +18,8 @@ public abstract class Bullet : MonoBehaviour
         StatHandler statHandler = shooter.GetComponent<StatHandler>();
         healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
         DestroyProjectile();
+
+        Debug.Log($"{transform.name}이 {collision.name}을 공격하여 {healthSystem.CurrentHealth}가 되엇습니다");
     }
 
     private void OnEnable()
@@ -28,6 +32,8 @@ public abstract class Bullet : MonoBehaviour
         }
 
         rb = GetComponent<Rigidbody2D>();
+
+        Invoke("DestroyProjectile", 10f);
 
     }
 

@@ -59,6 +59,8 @@ public class PierceBullet : Bullet
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
         StatHandler statHandler = shooter.GetComponent<StatHandler>();
         healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
+        collision.GetComponent<Rigidbody2D>().AddForce(-((Vector2)collision.transform.position - rb.position).normalized * knockbackPower, ForceMode2D.Impulse);
+
     }
 
 }

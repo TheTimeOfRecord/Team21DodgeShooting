@@ -46,6 +46,14 @@ public class GameManager : MonoBehaviour
         EnemyDeathCount = 0;
     }
 
+    private void Update()
+    {
+        if(EnemyDeathCount == 50)
+        {
+            ToBoss();
+        }
+    }
+
     private void Start()
     {
         SceneManager.sceneLoaded += OnBossSceneLoaded;
@@ -59,5 +67,33 @@ public class GameManager : MonoBehaviour
     private void FindPlayer()
     {
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    public void ToBoss()
+    {
+        StartCoroutine(LoadToBoss());
+    }
+
+    public IEnumerator LoadToBoss()
+    {
+        DestroyAllBullets();
+
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BossScene");
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        DestroyAllBullets();
+
+        SceneManager.LoadScene("BossScene");
+    }
+
+    private void DestroyAllBullets()
+    {
+        var allProjectiles = FindObjectsOfType<ProjectileController>();
+        foreach (var projectile in allProjectiles)
+        {
+            projectile.gameObject.SetActive(false);
+        }
     }
 }

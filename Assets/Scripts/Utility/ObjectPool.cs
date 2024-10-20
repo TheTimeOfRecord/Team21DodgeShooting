@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -63,10 +64,19 @@ public class ObjectPool : MonoBehaviour
             //≤®≥ªæÓ¡ÿ¥Ÿ
             obj.transform.position = position;
             obj.SetActive(true);
-            PoolDictionary[tag].Enqueue(obj);
+            StartCoroutine(ReturnToPoolWhenDisable(obj, tag));
             return obj;
         }
         return null;
+    }
+
+    private IEnumerator ReturnToPoolWhenDisable(GameObject obj, string tag)
+    {
+        while (obj.activeSelf)
+        {
+            yield return null;
+        }
+        PoolDictionary[tag].Enqueue(obj);
     }
 
     public GameObject GetObjectFromPool(string tag)
