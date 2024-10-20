@@ -29,8 +29,12 @@ public class ItemSelectionManager : MonoBehaviour
         }
     }
 
+    public void GetChoices()
+    {
+        DisplaySelectionOptions();
+    }
 
-    public void DisplaySelectionOptions()
+    private void DisplaySelectionOptions()
     {
         //selectPanel을 활성화하고 버튼에 아이템을 랜덤으로 넣는다.
         selectPanel.SetActive(true);
