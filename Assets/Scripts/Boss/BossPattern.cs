@@ -3,15 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BossPattern : MonoBehaviour
 {
     [SerializeField] private Transform[] WeaponPivots;      //1, 3, 2, 0순서, 5,4은 날개 끝자락
     [SerializeField] private Transform[] OutsidePositions;
+    [SerializeField] private InputActionAsset inputAsset;
 
     private HealthSystem healthSystem;
     private StatHandler statHandler;
     private Animator anim;
+    private InputActionMap player01;
+    private InputAction moveAction;
+    private InputAction fireAction;
 
     private bool isAlive = true;
     private int patternIndex = 0;
@@ -20,6 +25,10 @@ public class BossPattern : MonoBehaviour
 
     private void Awake()
     {
+        player01 = inputAsset.FindActionMap("Player01");
+        moveAction = player01.FindAction("Move");
+        fireAction = player01.FindAction("Fire");
+
         healthSystem = GetComponent<HealthSystem>();
         statHandler = GetComponent<StatHandler>();
         anim = GetComponentInChildren<Animator>();
@@ -29,7 +38,17 @@ public class BossPattern : MonoBehaviour
     {
         healthSystem.OnDeath -= OnDead;
         healthSystem.OnDeath += OnDead;
+
+        fireAction.Disable();
+        moveAction.Disable();
+        Invoke("PlayerActionEnable", 3f);
         Invoke("Think", 5f);
+    }
+
+    private void PlayerActionEnable()
+    {
+        moveAction.Enable();
+        fireAction.Enable();
     }
 
     private void OnDead()
@@ -87,7 +106,7 @@ public class BossPattern : MonoBehaviour
         Shotgun(20);
 
         currentPatternCount++;
-        if(currentPatternCount < maxPatternCount[patternIndex])
+        if (currentPatternCount < maxPatternCount[patternIndex])
         {
             Invoke("FirstPattern", 1);
         }
@@ -119,12 +138,13 @@ public class BossPattern : MonoBehaviour
 
     private void ThirdPattern()     //원형으로 마구마구 퍼지는 패턴
     {
+        statHandler.ChangeCharacterStat(stats.bulletSpeed, 0.5f);
         SpreadBullets(30);
 
         currentPatternCount++;
         if (currentPatternCount < maxPatternCount[patternIndex])
         {
-            Invoke("ThirdPattern", 0.5f);
+            Invoke("ThirdPattern", 1f);
         }
         else
         {
@@ -136,13 +156,18 @@ public class BossPattern : MonoBehaviour
 
     private void FourthPattern()      //화면 밖에서 총알 발사
     {
-        Debug.Log("화면 밖에서 총알 발사할건데 일단 3번패턴과 동일");
-        SpreadBullets(30);
+        statHandler.ChangeCharacterStat(stats.bulletSpeed, 2f);
+        statHandler.ChangeCharacterStat(stats.bulletSize, 3f);
+        for (int i = 0; i < OutsidePositions.Length; i++)
+        {
+            razor(30);
+        }
+
 
         currentPatternCount++;
         if (currentPatternCount < maxPatternCount[patternIndex])
         {
-            Invoke("FourthPattern", 2);
+            Invoke("FourthPattern", 5);
         }
         else
         {
@@ -154,12 +179,19 @@ public class BossPattern : MonoBehaviour
     private void FifthPattern()     //화면밖에서 몬스터 소환과 동시에 탄환발사
     {
         Debug.Log("화면 밖에서 몬스터 소환과 동시에 탄환 발사할건데 일단 3번패턴과 동일");
-        SpreadBullets(30);
+        statHandler.ChangeCharacterStat(stats.bulletSpeed, 1f);
+        statHandler.ChangeCharacterStat(stats.bulletSize, 1f);
+        for (int i = 0; i < OutsidePositions.Length; i++)
+        {
+            StartCoroutine(SummonAllMonsters());
+            razor(30);
+            SpreadBullets(50);
+        }
 
         currentPatternCount++;
         if (currentPatternCount < maxPatternCount[patternIndex])
         {
-            Invoke("FifthPattern", 2);
+            Invoke("FifthPattern", 10);
         }
         else
         {
@@ -167,6 +199,7 @@ public class BossPattern : MonoBehaviour
             Invoke("Think", 3f);
         }
     }
+
 
     private void Shotgun(float bulletNumber)
     {
@@ -182,7 +215,7 @@ public class BossPattern : MonoBehaviour
 
             if (bullet != null)
             {
-                bullet.Move(statHandler.CurrentStat.bulletSpeed, Vector2.down);
+                bullet.Move(statHandler.CurrentStat.bulletSpeed, WeaponPivots[i].position + Vector3.down*5000);
             }
         }
     }
@@ -191,7 +224,7 @@ public class BossPattern : MonoBehaviour
     {
         //유도탄 발사
         statHandler.ChangeCharacterStat(stats.bulletNum, bulletNumber);
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool("HomingBullet", WeaponPivots[i].position);
 
@@ -212,7 +245,7 @@ public class BossPattern : MonoBehaviour
         //원형탄막 발사
         statHandler.ChangeCharacterStat(stats.bulletNum, bulletNumber);
 
-        for(int i = 4; i < 6; i++)
+        for (int i = 4; i < 6; i++)
         {
             GameObject spreadBulletProjectile = GameManager.Instance.objPool.GetObjectFromPool("SpreadBullet");
 
@@ -245,4 +278,21 @@ public class BossPattern : MonoBehaviour
             }
         }
     }
+
+    private IEnumerator SummonAllMonsters()
+    {
+        for (int i = 0; i < OutsidePositions.Length; i++)
+        {
+            string tag = Enum.GetName(typeof(EnemyType), i % 4).ToString();
+            GameObject monster = GameManager.Instance.objPool.GetObjectFromPool(tag, OutsidePositions[i].position);
+            monster.SetActive(true);
+
+            yield return wait;
+        }
+
+    }
+
+
+    WaitForSeconds wait = new WaitForSeconds(0.1f);
+
 }
