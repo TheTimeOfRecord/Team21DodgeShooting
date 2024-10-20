@@ -7,7 +7,7 @@ public class HealthSystem : MonoBehaviour
 
     public StatHandler statHandler;
     private float timeSinceLastChange = float.MaxValue;
-    private bool isAttacked;
+    private bool isAttacked = false;
 
     public event Action OnDamage;
     public event Action OnHeal;
@@ -29,7 +29,7 @@ public class HealthSystem : MonoBehaviour
 
     private void Update()
     {
-        if(isAttacked && timeSinceLastChange < healthChangeDelay)
+        if(isAttacked && (timeSinceLastChange < healthChangeDelay))
         {
             timeSinceLastChange += Time.deltaTime;
             if(timeSinceLastChange >= healthChangeDelay)
@@ -63,6 +63,7 @@ public class HealthSystem : MonoBehaviour
         }
         else
         {
+            isAttacked = true;
             OnDamage?.Invoke();
         }
         return true;

@@ -17,8 +17,9 @@ public abstract class Bullet : MonoBehaviour
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
         StatHandler statHandler = shooter.GetComponent<StatHandler>();
         healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
-        collision.GetComponent<Rigidbody2D>().AddForce(((Vector2)collision.transform.position - rb.position).normalized * knockbackPower, ForceMode2D.Impulse);
         DestroyProjectile();
+
+        Debug.Log($"{transform.name}이 {collision.name}을 공격하여 {healthSystem.CurrentHealth}가 되엇습니다");
     }
 
     private void OnEnable()

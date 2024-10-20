@@ -9,12 +9,24 @@ public class BossController : MonoBehaviour
 
     private Vector3 screenOffset = new Vector3(0.5f, 0.5f, 10);
 
-    Animator animCtrl;
+    private Animator animCtrl;
+    private HealthSystem healthSystem;
 
     private void Awake()
     {
         animCtrl = GetComponentInChildren<Animator>();
+        healthSystem = GetComponent<HealthSystem>();
         Invoke("OnBossLoadEnd", 3);
+    }
+
+    private void Start()
+    {
+        healthSystem.OnDeath += BossDead;
+    }
+
+    private void BossDead()
+    {
+        animCtrl.SetTrigger("OnBossDead");
     }
 
     private void OnBossLoadEnd()
