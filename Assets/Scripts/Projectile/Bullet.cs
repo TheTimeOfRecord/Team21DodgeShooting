@@ -8,6 +8,8 @@ public abstract class Bullet : MonoBehaviour
     public float size = 1;
     protected Rigidbody2D rb;
 
+    public float knockbackPower = 1;
+
     public abstract void Move(float speed, Vector2 target);
     public virtual void OnImpact(Collider2D collision)
     {
@@ -15,6 +17,7 @@ public abstract class Bullet : MonoBehaviour
         HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
         StatHandler statHandler = shooter.GetComponent<StatHandler>();
         healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
+        collision.GetComponent<Rigidbody2D>().AddForce(((Vector2)collision.transform.position - rb.position).normalized * knockbackPower, ForceMode2D.Impulse);
         DestroyProjectile();
     }
 
