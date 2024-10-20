@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81369b633286de4cbb19ac65f306137, type: 3}
   m_Name: BombItemSO
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 21300000, guid: f37c3024de68fe14eb2bb826e3284eb0, type: 3}
   itemType: 1
   itemName: BombItemSO
   itemBackColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}

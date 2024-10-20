@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81369b633286de4cbb19ac65f306137, type: 3}
   m_Name: IncreaseHealthItemSO
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 21300000, guid: b1e51b371fced1d42b8a327d4a5d37d5, type: 3}
   itemType: 0
+  itemName: IncreaseHealthItemSO
   itemBackColor: {r: 0.3066038, g: 1, b: 0.4171999, a: 1}
   fontColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   itemInfoText: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"

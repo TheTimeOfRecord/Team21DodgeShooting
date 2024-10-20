@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f81369b633286de4cbb19ac65f306137, type: 3}
   m_Name: IncreaseSpeedItemSO
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: 21300000, guid: 6de59f5c30cef1b469295c8cec45115f, type: 3}
   itemType: 0
+  itemName: IncreaseSpeedItemSO
   itemBackColor: {r: 0.15566039, g: 0.53625524, b: 1, a: 1}
   fontColor: {r: 0.764151, g: 0.34042498, b: 0.16941082, a: 1}
   itemInfoText: "\uC2A4\uD53C\uB4DC \uC99D\uAC00"
