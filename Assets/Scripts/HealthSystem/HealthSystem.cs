@@ -11,7 +11,7 @@ public class HealthSystem : MonoBehaviour
 
     public event Action OnDamage;
     public event Action OnHeal;
-    public event Action OnDeath;
+    public event Action<Vector2> OnDeath;
     public event Action OnInvincibilityEnd;
 
     public float CurrentHealth { get; private set; }
@@ -54,7 +54,7 @@ public class HealthSystem : MonoBehaviour
 
         if (CurrentHealth <= 0f)
         {
-            CallDeath();
+            CallDeath(transform.position);
             return true;
         }
         if (amount > 0)
@@ -69,9 +69,9 @@ public class HealthSystem : MonoBehaviour
         return true;
     }
 
-    private void CallDeath()
+    private void CallDeath(Vector2 position)
     {
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(position);
     }
 
     public void ResetHealth()

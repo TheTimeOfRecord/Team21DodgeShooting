@@ -19,7 +19,7 @@ public class PlayerOnDeath : MonoBehaviour
         healthSystem.OnDeath += PlayerDead;
     }
 
-    private void PlayerDead()
+    private void PlayerDead(Vector2 position)
     {
         anim.SetTrigger("OnDeath");
     }

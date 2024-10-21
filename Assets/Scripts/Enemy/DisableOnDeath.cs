@@ -18,7 +18,7 @@ public class DisableOnDeath : MonoBehaviour
 
     
 
-    private void OnDeath()
+    private void OnDeath(Vector2 position)
     {
         rb.velocity = Vector2.zero;
         
