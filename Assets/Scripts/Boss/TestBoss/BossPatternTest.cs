@@ -20,6 +20,8 @@ public class BossPatternTest : MonoBehaviour
     private InputAction moveAction;
     private InputAction fireAction;
 
+    public Action<int> PatternEvent;
+
     private bool isAlive = true;
     private int patternIndex = 0;
     private int currentPatternCount = 0;
@@ -108,6 +110,8 @@ public class BossPatternTest : MonoBehaviour
 
     private void FirstPattern()     //총알세례. 4개의 정면피벗에서 일직선 총알 다수 발사
     {
+        PatternEvent?.Invoke(patternIndex);
+
         Shotgun(20);
 
         currentPatternCount++;
@@ -118,13 +122,15 @@ public class BossPatternTest : MonoBehaviour
         else
         {
             patternIndex++;
-
+            PatternEvent?.Invoke(5);
             Invoke("Think", 3f);
         }
     }
 
     private void SecondPattern()    //1패턴과함께 유도탄추가
     {
+        PatternEvent?.Invoke(patternIndex);
+
         Shotgun(20);
         HomingMissile(2);
 
@@ -136,6 +142,8 @@ public class BossPatternTest : MonoBehaviour
         else
         {
             patternIndex++;
+            PatternEvent?.Invoke(5);
+
             Invoke("Think", 3f);
         }
     }
@@ -143,6 +151,8 @@ public class BossPatternTest : MonoBehaviour
 
     private void ThirdPattern()     //원형으로 마구마구 퍼지는 패턴
     {
+        PatternEvent?.Invoke(patternIndex);
+
         StartCoroutine(SpreadBullets(30));
 
         currentPatternCount++;
@@ -153,6 +163,8 @@ public class BossPatternTest : MonoBehaviour
         else
         {
             patternIndex++;
+            PatternEvent?.Invoke(5);
+
             Invoke("Think", 5f);
         }
     }
@@ -160,6 +172,8 @@ public class BossPatternTest : MonoBehaviour
 
     private void FourthPattern()      //화면 밖에서 총알 발사
     {
+        PatternEvent?.Invoke(patternIndex);
+
         for (int i = 0; i < OutsidePositions.Length; i++)
         {
             StartCoroutine(Razor(5));
@@ -174,12 +188,16 @@ public class BossPatternTest : MonoBehaviour
         else
         {
             patternIndex++;
+            PatternEvent?.Invoke(5);
+
             Invoke("Think", 5f);
         }
     }
 
     private void FifthPattern()     //화면밖에서 몬스터 소환과 동시에 탄환발사
     {
+        PatternEvent?.Invoke(patternIndex);
+
         Debug.Log("화면 밖에서 몬스터 소환과 동시에 탄환 발사할건데 일단 3번패턴과 동일");
         for (int i = 0; i < OutsidePositions.Length; i++)
         {
@@ -196,6 +214,8 @@ public class BossPatternTest : MonoBehaviour
         else
         {
             patternIndex = 0;
+            PatternEvent?.Invoke(5);
+
             Invoke("Think", 5f);
         }
     }

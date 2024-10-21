@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : DodgeController
 {
@@ -14,6 +16,7 @@ public class EnemyController : DodgeController
     {
         base.Awake();
         AttackTarget = GameManager.Instance.Player;
+
     }
 
     protected virtual void OnEnable()
@@ -23,6 +26,12 @@ public class EnemyController : DodgeController
 
     protected virtual void Start()
     {
+        SceneManager.sceneLoaded += UpdateTarget;
+    }
+
+    private void UpdateTarget(Scene arg0, LoadSceneMode arg1)
+    {
+        AttackTarget = GameManager.Instance.Player;
     }
 
     protected virtual void FixedUpdate()
