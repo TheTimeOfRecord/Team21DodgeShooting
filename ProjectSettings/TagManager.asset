@@ -13,6 +13,7 @@ TagManager:
   - HoveringEnemy
   - BlinkingEnemy
   - BulletSpawner
+  - Bullet
   layers:
   - Default
   - TransparentFX

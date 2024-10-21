@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     private void DestroyAllBullets()
     {
-        var allProjectiles = FindObjectsOfType<ProjectileController>();
+        GameObject[] allProjectiles = GameObject.FindGameObjectsWithTag("Bullet");
         foreach (var projectile in allProjectiles)
         {
             projectile.gameObject.SetActive(false);

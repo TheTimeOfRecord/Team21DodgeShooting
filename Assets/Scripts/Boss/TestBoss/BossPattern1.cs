@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BossPattern : MonoBehaviour
+public class BossPatternTest : MonoBehaviour
 {
     [SerializeField] private Transform[] WeaponPivots;      //1, 3, 2, 0순서, 5,4은 날개 끝자락
     [SerializeField] private Transform[] OutsidePositions;
