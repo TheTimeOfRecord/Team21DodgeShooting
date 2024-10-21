@@ -8,6 +8,11 @@ using TMPro;
 using Random = UnityEngine.Random;
 using Unity.VisualScripting;
 
+//리팩토링 필요
+//전반적인 애니메이션 관련 움직임, 죽을때의 모습등을 관리하는 Controller
+//움직임 함수가 포함된 스크립트
+//발사 로직을 포함한 스크립트
+//패턴별로 어떤움직임, 투사체 발사를 취할건지에 대한 스크립트
 public class BossControllerTest : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
