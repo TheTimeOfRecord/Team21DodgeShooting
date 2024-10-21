@@ -9,22 +9,27 @@ public class EnemyShootingController : MonoBehaviour
 
     private Vector2 target = Vector2.zero;
 
+    public bool IsDead { get; set; }
+
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
         pivot = GetComponent<Transform>();
+        IsDead = false;
     }
 
 
     private void OnEnable()
     {
         if (gameObject.activeSelf)
+        {
             SetProjectile();
+        }
     }
 
     private void SetProjectile()
     {
-        if(gameObject.activeSelf)
+        if(!IsDead)
         switch (transform.tag)
         {
             case "StraightEnemy":
@@ -49,7 +54,7 @@ public class EnemyShootingController : MonoBehaviour
 
     IEnumerator SpreadEnemyFire()
     { 
-        while(transform.gameObject.activeSelf == true)
+        while(!IsDead)
         {        //SpreadBullet일 경우에만
             GameObject spreadBulletProjectile = GameManager.Instance.objPool.GetObjectFromPool("SpreadBullet");
 
@@ -71,7 +76,7 @@ public class EnemyShootingController : MonoBehaviour
 
     IEnumerator EnermyFire(string bulletTag)
     {
-        while (gameObject.activeSelf == true)
+        while (!IsDead)
         {
             GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool(bulletTag, pivot.position);
 

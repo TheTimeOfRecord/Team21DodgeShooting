@@ -9,6 +9,8 @@ public class EnemyController : DodgeController
     protected Transform AttackTarget { get; private set; }
     protected Vector2 direction;
     protected StatHandler statHandler;
+    [SerializeField] protected Sprite sprite;
+    protected SpriteRenderer mainSprite;
 
     // [SerializeField] private string targetTag = "Player";
 
@@ -16,12 +18,12 @@ public class EnemyController : DodgeController
     {
         base.Awake();
         AttackTarget = GameManager.Instance.Player;
-
+        mainSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected virtual void OnEnable()
     {
-
+        mainSprite.sprite = sprite;
     }
 
     protected virtual void Start()
