@@ -926,7 +926,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 17595145}
         m_TargetAssemblyTypeName: PlayerSelectManager1, Assembly-CSharp
-        m_MethodName: InvokePlayer
+        m_MethodName: InvokePlayer2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

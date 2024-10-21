@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : DodgeController
 {
     protected Transform AttackTarget { get; private set; }
     protected Vector2 direction;
     protected StatHandler statHandler;
+    [SerializeField] protected Sprite sprite;
+    protected SpriteRenderer mainSprite;
 
     // [SerializeField] private string targetTag = "Player";
 
@@ -14,15 +18,22 @@ public class EnemyController : DodgeController
     {
         base.Awake();
         AttackTarget = GameManager.Instance.Player;
+        mainSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected virtual void OnEnable()
     {
-
+        mainSprite.sprite = sprite;
     }
 
     protected virtual void Start()
     {
+        SceneManager.sceneLoaded += UpdateTarget;
+    }
+
+    private void UpdateTarget(Scene arg0, LoadSceneMode arg1)
+    {
+        AttackTarget = GameManager.Instance.Player;
     }
 
     protected virtual void FixedUpdate()

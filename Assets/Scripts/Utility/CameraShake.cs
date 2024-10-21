@@ -7,11 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] GameObject playerCamera;
-
     CinemachineVirtualCamera vc;
     CinemachineBasicMultiChannelPerlin noise;
-    Animator animCtrl;
 
     private void Awake()
     {
@@ -20,25 +17,20 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        animCtrl = playerCamera.GetComponent<Animator>();
         noise =vc.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        SceneManager.sceneLoaded += OnSceneLoaded;
         ShakeCamera(4, 1.5f);
-        animCtrl.SetTrigger("OnCameraSet");
         Invoke("StopCameraShaking", 3f);
-
     }
 
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        if(scene.name == "BossScene")
-        {
-            ShakeCamera(4, 1.5f);
-            animCtrl.SetTrigger("OnCameraSet");
-            Invoke("StopCameraShaking", 3f);
-        }
-    }
+    //public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    //{
+    //    if (scene.name == "BossScene")
+    //    {
+    //        ShakeCamera(4, 1.5f);
+    //        Invoke("StopCameraShaking", 3f);
+    //    }
+    //}
 
     public void ShakeCamera(float Amplitude, float Frequency)
     {

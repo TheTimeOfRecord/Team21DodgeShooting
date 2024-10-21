@@ -12,18 +12,26 @@ public class PlayerSelectManager1 : MonoBehaviour
     }
 
     private GameObject Player;
+    private GameObject Player2;
 
     private void Initalize()
     {
         Player = Resources.Load<GameObject>("Prefabs/Player");
+        Player2 = Resources.Load<GameObject>("Prefabs/Player 2");
     }
 
     public void InvokePlayer()
     {
-        Instantiate(Player);
         SceneManager.LoadScene("MainScene");
+        GameManager.Instance.PlayerId = 0;
     }
-    
+
+    public void InvokePlayer2()
+    {
+        SceneManager.LoadScene("MainScene");
+        GameManager.Instance.PlayerId = 1;
+    }
+
 }
 
 

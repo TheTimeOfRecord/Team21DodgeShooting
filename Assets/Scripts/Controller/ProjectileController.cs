@@ -25,17 +25,24 @@ public class ProjectileController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Bullet otherBullet = collision.GetComponent<Bullet>();
-
-        // ÃÑ¾Ë³¢¸® ºÎµúÈù °æ¿ì
-        if (otherBullet != null)
+        if(collision == null)
         {
-            HandleBulletCollision(otherBullet, collision);
+            return;
         }
-        // ÃÑ¾ËÀÌ ¿ÀºêÁ§Æ®¿Í ºÎµúÈù °æ¿ì
         else
         {
-            HandleObjectCollision(collision);
+            Bullet otherBullet = collision.GetComponent<Bullet>();
+
+            // ÃÑ¾Ë³¢¸® ºÎµúÈù °æ¿ì
+            if (otherBullet != null)
+            {
+                HandleBulletCollision(otherBullet, collision);
+            }
+            // ÃÑ¾ËÀÌ ¿ÀºêÁ§Æ®¿Í ºÎµúÈù °æ¿ì
+            else
+            {
+                HandleObjectCollision(collision);
+            }
         }
     }
 
@@ -66,7 +73,7 @@ public class ProjectileController : MonoBehaviour
             Debug.Log("thisbullet.shooter is null" + thisBullet);
         }
         // Àû±ºÀÌ ½ð ÃÑ¾ËÀÌ ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®¿¡ ¸ÂÀº °æ¿ì
-        if (IsLayerMatched(EnemyLayer.value, thisBullet.shooter.layer) && IsLayerMatched(PlayerLayer.value, collision.gameObject.layer))
+        else if (IsLayerMatched(EnemyLayer.value, thisBullet.shooter.layer) && IsLayerMatched(PlayerLayer.value, collision.gameObject.layer))
         {
             thisBullet.OnImpact(collision);
         }

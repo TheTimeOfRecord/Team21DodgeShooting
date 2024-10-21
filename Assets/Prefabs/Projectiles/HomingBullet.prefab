@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 8337585744403491301}
   m_Layer: 10
   m_Name: HomingBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,3 +239,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletCount: 1
   size: 1
+  knockbackPower: 1

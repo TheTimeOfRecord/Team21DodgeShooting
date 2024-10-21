@@ -39,6 +39,9 @@ public class StatHandler : MonoBehaviour
             case stats.bulletNum:
                 CurrentStat.bulletNum = (int)amount;
                 break;
+            case stats.speed:
+                CurrentStat.speed = (int)amount;
+                break;
         }
     }
     public void ModifiyPlayerStat(ItemSO itemSO)
@@ -53,5 +56,6 @@ public enum stats
     ATK,
     bulletSize,
     bulletSpeed,
-    bulletNum
+    bulletNum,
+    speed
 }

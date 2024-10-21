@@ -15,12 +15,12 @@ public class BossSceneBtn : MonoBehaviour
     {
         DestroyAllBullets();
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BossScene");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BossSceneTest");
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
-        SceneManager.LoadScene("BossScene");
+        SceneManager.LoadScene("BossSceneTest");
     }
 
     private void DestroyAllBullets()
