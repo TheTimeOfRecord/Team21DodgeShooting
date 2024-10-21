@@ -6,15 +6,15 @@ public class BlinkingEnemyController : EnemyController
     private bool canBlink;
     [SerializeField] private float blinkDelayTime;
 
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
         canBlink = true;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
     }
 
     protected override void FixedUpdate()

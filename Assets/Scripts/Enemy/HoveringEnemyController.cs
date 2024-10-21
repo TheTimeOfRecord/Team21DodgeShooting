@@ -8,18 +8,15 @@ public class HoveringEnemyController : EnemyController
     private bool isRanged;
     private Vector2 initDirectionInRange;
 
-    // 추후 Stat의 Speed로 변환 예정
-    [SerializeField] protected float speed;
-
-    protected override void Start()
-    {
-        base.Start();
-    }
-
     protected override void OnEnable()
     {
         base.OnEnable();
         isRanged = false;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
     }
 
     protected override void FixedUpdate()
@@ -52,7 +49,7 @@ public class HoveringEnemyController : EnemyController
 
     private void MoveCircle()
     {
-        rad += Time.deltaTime * (speed/Range);
+        rad += Time.deltaTime * (stats.CurrentStat.speed/Range);
         float initialRad = Mathf.Atan2(initDirectionInRange.y, initDirectionInRange.x);
         float x = Range * Mathf.Cos(rad + initialRad);
         float y = Range * Mathf.Sin(rad + initialRad);

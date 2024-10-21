@@ -8,27 +8,44 @@ public class DisableOnDeath : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private EnemyShootingController enemyShootingController;
+    private DodgeMovement dodgeMovement;
+    private EnemyController enemyController;
 
-    private void Start()
+
+    private void Awake()
     {
         healthSystem = GetComponent<HealthSystem>();
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponentInChildren<Animator>();
+        dodgeMovement = GetComponent<DodgeMovement>();
+        enemyController = GetComponent<EnemyController>();
         enemyShootingController = GetComponent<EnemyShootingController>();
-
-        anim.enabled = false;
-        healthSystem.OnDeath -= OnDeath;
-
-        healthSystem.OnDeath += OnDeath;
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void OnEnable()
     {
+        healthSystem.OnDeath += OnDeath;
         anim.enabled = false;
+    }
+
+    private void OnDisable()
+    {
+        healthSystem.OnDeath -= OnDeath;
+        if (dodgeMovement != null)
+        {
+            dodgeMovement.enabled = true;
+        }
+        enemyController.enabled = true;
+        enemyShootingController.IsDead = false;
     }
 
     private void OnDeath(Vector2 position)
     {
+        if (dodgeMovement != null)
+        {
+            dodgeMovement.enabled = false;
+        }
+        enemyController.enabled = false;
         rb.velocity = Vector2.zero;
         
         GameManager.Instance.EnemyDeathCount++;
@@ -43,7 +60,6 @@ public class DisableOnDeath : MonoBehaviour
     private void OnDeathInvoke()
     {
         healthSystem.ResetHealth();
-        enemyShootingController.IsDead = false;
         gameObject.SetActive(false);
     }
 }
