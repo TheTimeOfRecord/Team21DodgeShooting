@@ -20,3 +20,4 @@ MonoBehaviour:
   bulletSpeed: 10
   bulletNum: 5
   attackDelay: 0.2
+  bombNum: 0

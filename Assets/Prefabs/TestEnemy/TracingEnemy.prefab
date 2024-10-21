@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: -8875009652894695890}
   - component: {fileID: -6809698521151120254}
   - component: {fileID: 5092111815532110315}
+  - component: {fileID: 6321957425866621718}
   m_Layer: 12
   m_Name: TracingEnemy
   m_TagString: TracingEnemy
@@ -233,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat: {fileID: 11400000, guid: e95537e4f91128643978eeb023f1606d, type: 2}
+  itemToStatAssigner: {fileID: 0}
 --- !u!114 &-8875009652894695890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
+  statHandler: {fileID: 0}
 --- !u!114 &5092111815532110315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,3 +273,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 634943e1e6c7f7d46ac0a4e5767cf316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6321957425866621718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666657067879035701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec3b8057ccdf704fb2fb6d992a14680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomItemPrefab: {fileID: 2752425091185741778, guid: a93ead9df56d64d46935f28ca845359f, type: 3}

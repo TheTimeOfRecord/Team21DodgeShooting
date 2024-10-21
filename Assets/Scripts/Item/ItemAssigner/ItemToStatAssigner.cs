@@ -10,10 +10,10 @@ public class ItemToStatAssigner : MonoBehaviour
     {
         statModifiers = new Dictionary<string, Action<HealthStatSO, float>>
         {
-            {"IncreaseBulletNum", (stat, value) => stat.bulletNum += (int)value },
-            {"IncreaseBulletDamage", (stat, value) => stat.ATK += value },
-            {"IncreaseSpeed", (stat, value) => stat.speed += value },
-            {"IncreaseHealth", (stat, value) => stat.maxHP += value }
+            {"IncreaseBulletNumItemSO", (stat, value) => stat.bulletNum += (int)value },
+            {"IncreaseBulletDamageItemSO", (stat, value) => stat.ATK += value },
+            {"IncreaseSpeedItemSO", (stat, value) => stat.speed += value },
+            {"IncreaseHealthItemSO", (stat, value) => stat.maxHP += value }
             //StatModifier추가시 여기에 기능 추가
         };
     }
@@ -25,7 +25,7 @@ public class ItemToStatAssigner : MonoBehaviour
             if (statModifiers.TryGetValue(itemSO.itemName, out Action<HealthStatSO, float> modifyAction))
             {
                 modifyAction(currentStat, itemSO.stat);
-                Debug.Log("스탯변경 완료.");
+                Debug.Log($"{itemSO.itemName} 스탯변경 완료.");
             }
             else
             {

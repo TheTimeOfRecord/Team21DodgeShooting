@@ -38,6 +38,7 @@ public class ItemSelectionManager : MonoBehaviour
     {
         //selectPanel을 활성화하고 버튼에 아이템을 랜덤으로 넣는다.
         selectPanel.SetActive(true);
+        Time.timeScale = 0f;
 
         List<ItemSO> selectedItems = GetRandomItems(selectionOptionCount);
 
@@ -71,6 +72,7 @@ public class ItemSelectionManager : MonoBehaviour
 
     private void OnItemSelected(ItemSO selectedItemSO)
     {
+        Debug.Log($"아이템 이름: {selectedItemSO.itemName}");
         //TODO : 아이템 선택 처리 로직
         if (selectedItemSO.itemType == ItemType.StatModifier)
         {
@@ -83,5 +85,6 @@ public class ItemSelectionManager : MonoBehaviour
         Debug.Log($"Button {selectedItemSO.itemName} onClick assigned");
 
         selectPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

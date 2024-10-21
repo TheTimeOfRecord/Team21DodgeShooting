@@ -7,10 +7,11 @@ public class StatHandler : MonoBehaviour
     [SerializeField] private HealthStatSO baseStat;
     public HealthStatSO CurrentStat { get; private set; }
 
-    public ItemToStatAssigner itemToStatAssigner;
+    private ItemToStatAssigner itemToStatAssigner;
 
     private void Awake()
     {
+        itemToStatAssigner = GetComponent<ItemToStatAssigner>();
         UpdateCharacterStat();
     }
 

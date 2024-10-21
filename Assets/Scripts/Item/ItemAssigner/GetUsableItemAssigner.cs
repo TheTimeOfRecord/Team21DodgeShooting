@@ -10,8 +10,8 @@ public class GetUsableItemAssigner : MonoBehaviour
     {
         getUsableItemActions = new Dictionary<string, Action<float, HealthStatSO>>()
         {
-            {"RecoveryPotion", GetRecoveryPotion },
-            {"Bomb", GetBomb}
+            {"RecoveryPotionItemSO", GetRecoveryPotion },
+            {"BombItemSO", GetBomb}
         };
     }
 
