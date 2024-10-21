@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 7452748399214851633}
   - component: {fileID: 1658616293258392723}
   - component: {fileID: 3346121729782684286}
+  - component: {fileID: -7641244946627934919}
   m_Layer: 0
   m_Name: TracingEnemy
   m_TagString: Untagged
@@ -217,8 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf12696d7d236048b0be07310c1ec17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTransform: {fileID: 0}
-  targetTag: Player
+  sprite: {fileID: 0}
 --- !u!114 &3346121729782684286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,3 +232,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat: {fileID: 11400000, guid: e95537e4f91128643978eeb023f1606d, type: 2}
+--- !u!114 &-7641244946627934919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666657067879035701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec3b8057ccdf704fb2fb6d992a14680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomItemPrefab: {fileID: 2752425091185741778, guid: a93ead9df56d64d46935f28ca845359f, type: 3}

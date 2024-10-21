@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 5582225189801234554}
   - component: {fileID: 6106940772653038458}
   - component: {fileID: 6323526525519639453}
+  - component: {fileID: -1774328895787960908}
   m_Layer: 0
   m_Name: BlinkingEnemy
   m_TagString: Untagged
@@ -204,9 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc28642556664764a8c8fb12b3e30328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Player
-  speed: 0
-  PlayerTransform: {fileID: 0}
+  sprite: {fileID: 0}
+  blinkDelayTime: 0
 --- !u!114 &6323526525519639453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,3 +220,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat: {fileID: 11400000, guid: e95537e4f91128643978eeb023f1606d, type: 2}
+--- !u!114 &-1774328895787960908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7925105876300810159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec3b8057ccdf704fb2fb6d992a14680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomItemPrefab: {fileID: 2752425091185741778, guid: a93ead9df56d64d46935f28ca845359f, type: 3}
