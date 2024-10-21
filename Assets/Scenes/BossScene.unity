@@ -216,7 +216,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2836,7 +2836,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4167baa2429a0ec46a45f0afe6028803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 2322515350816947712}
 --- !u!114 &1697175386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2859,7 +2858,7 @@ MonoBehaviour:
   m_Follow: {fileID: 89351984869291941}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 4.8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -3204,13 +3203,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7499158362645154809, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2322515350816947713}
   m_SourcePrefab: {fileID: 100100000, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
 --- !u!1 &2322515350816947712 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7499158362645154809, guid: 8420b382dffa0684f8f5ef5f6fb31461, type: 3}
   m_PrefabInstance: {fileID: 1331729079734225802}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2322515350816947713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2322515350816947712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1186fcada3f9c714ea81411dbdae93b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

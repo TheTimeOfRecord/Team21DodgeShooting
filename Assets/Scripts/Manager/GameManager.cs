@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int EnemyDeathCount;
 
     public int PlayerId;
+    private bool isBossAppeared = false;
 
     public static GameManager Instance
     {
@@ -42,16 +43,19 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
 
-        FindPlayer();
-        objPool = GameObject.FindWithTag("BulletSpawner").GetComponent<ObjectPool>();
 
         EnemyDeathCount = 0;
     }
 
     private void Update()
     {
-        if(EnemyDeathCount == 50)
+        if (isBossAppeared)
         {
+            return;
+        }
+        else if(EnemyDeathCount >= 10)
+        {
+            isBossAppeared = !isBossAppeared;
             ToBoss();
         }
     }
@@ -64,11 +68,20 @@ public class GameManager : MonoBehaviour
     private void OnBossSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         FindPlayer();
+        objPool = GameObject.FindWithTag("BulletSpawner").GetComponent<ObjectPool>();
     }
 
     private void FindPlayer()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            Player = playerObj.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Player object not found. Make sure it is instantiated before calling FindPlayer.");
+        }
     }
 
     public void ToBoss()
