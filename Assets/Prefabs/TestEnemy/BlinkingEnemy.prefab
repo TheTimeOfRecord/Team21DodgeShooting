@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStat: {fileID: 11400000, guid: 2c04a2988ebc974468bdd5da1e0f5888, type: 2}
+  itemToStatAssigner: {fileID: 0}
 --- !u!114 &652465119115224302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
+  statHandler: {fileID: 0}
 --- !u!114 &-4661209306321266805
 MonoBehaviour:
   m_ObjectHideFlags: 0

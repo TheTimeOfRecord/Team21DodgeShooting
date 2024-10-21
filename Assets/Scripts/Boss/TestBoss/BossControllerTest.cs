@@ -16,6 +16,7 @@ public class BossControllerTest : MonoBehaviour
 
     private Vector3 screenOffset = new Vector3(0.5f, 0.5f, 10);
     private int pattern = 5;
+    private bool isOpening = true;
 
     private Animator animCtrl;
     private BossPatternTest bossPattern;
@@ -77,7 +78,7 @@ public class BossControllerTest : MonoBehaviour
                 ChargingMove();
                 break;
             case 4:
-                DefaultMove();
+                BlinkingMove();
                 break;
             default:        //패턴 진행중이 아닐경우
                 DefaultMove();
@@ -94,6 +95,7 @@ public class BossControllerTest : MonoBehaviour
     private void OnBossLoadEnd()
     {
         animCtrl.SetBool("isEndLoad", true);
+        isOpening = false;
     }
 
     private void Retry()
@@ -104,14 +106,17 @@ public class BossControllerTest : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(animCtrl.GetBool("isEndLoad"))
+        if (!isOpening && bossPattern.isAlive)
+        {
+            if (animCtrl.GetBool("isEndLoad"))
+                RotateToTarget(direction);
+
+            direction = DirectionToTarget();
             RotateToTarget(direction);
 
-        direction = DirectionToTarget();
-        RotateToTarget(direction);
-
-        if (canBossPattern)
-            BossMove(pattern);
+            if (canBossPattern)
+                BossMove(pattern);
+        }
     }
 
     private void FollowPlayer()
@@ -147,11 +152,11 @@ public class BossControllerTest : MonoBehaviour
         //플레이어 방향으로 다가가되 일정거리 이하가 되면 속도가 늦춰짐
         if (distance < 5f)
         {
-            statHandler.ChangeCharacterStat(stats.speed, 3f);
+            statHandler.ChangeCharacterStat(stats.speed, 4f);
         }
         else
         {
-            statHandler.ChangeCharacterStat(stats.speed, 8f);
+            statHandler.ChangeCharacterStat(stats.speed, 12f);
         }
     }
 
@@ -159,6 +164,7 @@ public class BossControllerTest : MonoBehaviour
     {
         if (canBlink)
         {
+            canBossPattern = false;
             canBlink = false;
             StartCoroutine(BlinkCoroutine());
         }
@@ -166,9 +172,11 @@ public class BossControllerTest : MonoBehaviour
 
     IEnumerator BlinkCoroutine()
     {
+        yield return null;
         Blink();
         yield return new WaitForSeconds(blinkDelayTime);
         canBlink = true;
+        canBossPattern = true;
     }
 
     private void Blink()
@@ -229,7 +237,7 @@ public class BossControllerTest : MonoBehaviour
 
     private IEnumerator Charging()
     {
-        statHandler.ChangeCharacterStat(stats.speed, 0f);
+        statHandler.ChangeCharacterStat(stats.speed, 1f);
         yield return waitFiveSeconds;
 
         Vector2 lastPos = DirectionToTarget();
@@ -243,5 +251,5 @@ public class BossControllerTest : MonoBehaviour
         canBossPattern = true;
     }
 
-    WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);
+    WaitForSeconds waitFiveSeconds = new WaitForSeconds(2f);
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,16 +20,19 @@ public class BossPatternTest : MonoBehaviour
     private InputActionMap player01;
     private InputAction moveAction;
     private InputAction fireAction;
+    private Rigidbody2D rb;
 
     public Action<int> PatternEvent;
 
-    private bool isAlive = true;
+    public bool isAlive = true;
     private int patternIndex = 0;
     private int currentPatternCount = 0;
     public int[] maxPatternCount;
 
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         player01 = inputAsset.FindActionMap("Player01");
         moveAction = player01.FindAction("Move");
         fireAction = player01.FindAction("Fire");
@@ -58,11 +62,27 @@ public class BossPatternTest : MonoBehaviour
     private void OnDead(Vector2 position)
     {
         isAlive = false;
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+        foreach(GameObject bullet in bullets)
+        {
+            bullet.SetActive(false);
+        }
+
+        EnemyController[] monsters = FindObjectsOfType<EnemyController>();
+        foreach(EnemyController monster in monsters)
+        {
+            monster.gameObject.SetActive(false);
+        }
+
+        StopAllCoroutines();
+        rb.velocity = Vector3.zero;
+        transform.position = GameManager.Instance.Player.position + new Vector3(0, 2, 0);
         anim.SetTrigger("OnBossDead");
         moveAction.Disable();
         fireAction.Disable();
         Invoke("DisappearBoss", 4.2f);
     }
+
 
     private void DisappearBoss()
     {
@@ -72,10 +92,6 @@ public class BossPatternTest : MonoBehaviour
 
     private void Think()
     {
-        //Debug.Log($"생각중..." +
-        //    $"패턴종류 : {patternIndex}" +
-        //    $"현재 패턴 반복 : {currentPatternCount}" +
-        //    $"현재 패턴의 맥스카운트 : {maxPatternCount[patternIndex]}");
         if (!isAlive)
         {
             return;
@@ -173,6 +189,8 @@ public class BossPatternTest : MonoBehaviour
     private void FourthPattern()      //화면 밖에서 총알 발사
     {
         PatternEvent?.Invoke(patternIndex);
+        OutsideShotgun(20);
+        StartCoroutine(SpreadBullets(40));
 
         for (int i = 0; i < OutsidePositions.Length; i++)
         {
@@ -199,17 +217,13 @@ public class BossPatternTest : MonoBehaviour
         PatternEvent?.Invoke(patternIndex);
 
         Debug.Log("화면 밖에서 몬스터 소환과 동시에 탄환 발사할건데 일단 3번패턴과 동일");
-        for (int i = 0; i < OutsidePositions.Length; i++)
-        {
-            StartCoroutine(SummonAllMonsters());
-            StartCoroutine(Razor(5));
-            SpreadBullets(50);
-        }
+        StartCoroutine(SummonAllMonsters());
+        OutsideShotgun(30);
 
         currentPatternCount++;
         if (currentPatternCount < maxPatternCount[patternIndex])
         {
-            Invoke("FifthPattern", 20);
+            Invoke("FifthPattern", 5);
         }
         else
         {
@@ -240,6 +254,25 @@ public class BossPatternTest : MonoBehaviour
         }
     }
 
+    private void OutsideShotgun(float bulletNumber)
+    {
+        //부채꼴 모양의 일반총알 bulletNumber만큼 발사
+        statHandler.ChangeCharacterStat(stats.bulletNum, bulletNumber);
+
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject projectile = GameManager.Instance.objPool.GetObjectFromPool("StandardBullet", OutsidePositions[i].position);
+
+            Bullet bullet = projectile.GetComponent<Bullet>();
+            bullet.SetShooter(this.gameObject);
+
+            if (bullet != null)
+            {
+                bullet.Move(statHandler.CurrentStat.bulletSpeed, GameManager.Instance.Player.position);
+            }
+        }
+    }
+
     private void HomingMissile(float bulletNumber)
     {
         //유도탄 발사
@@ -259,6 +292,8 @@ public class BossPatternTest : MonoBehaviour
             }
         }
     }
+
+
 
     private IEnumerator SpreadBullets(float bulletNumber)
     {
