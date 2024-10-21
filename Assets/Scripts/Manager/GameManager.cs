@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public int EnemyDeathCount;
 
+    public int PlayerId;
+
     public static GameManager Instance
     {
         get
