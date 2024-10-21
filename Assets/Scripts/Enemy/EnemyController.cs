@@ -53,4 +53,16 @@ public class EnemyController : DodgeController
         float rotZ = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
     }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
+            StatHandler statHandler = GetComponent<StatHandler>();
+            healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
+            Debug.Log("Ãæµ¹! " + healthSystem.CurrentHealth);
+            gameObject.SetActive(false);
+        }
+    }
 }
