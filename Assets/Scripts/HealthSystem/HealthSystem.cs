@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    [SerializeField] private float healthChangeDelay = 0.5f;
+    [SerializeField] private float healthChangeDelay;
 
     public StatHandler statHandler;
     private float timeSinceLastChange = float.MaxValue;
@@ -20,38 +20,44 @@ public class HealthSystem : MonoBehaviour
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
+        CurrentHealth = MaxHealth;
     }
 
     private void Start()
     {
-        CurrentHealth = MaxHealth;
+
     }
 
     private void Update()
     {
-        if(isAttacked && (timeSinceLastChange < healthChangeDelay))
+        if (isAttacked && (timeSinceLastChange < healthChangeDelay))
         {
             timeSinceLastChange += Time.deltaTime;
-            if(timeSinceLastChange >= healthChangeDelay)
+            if (timeSinceLastChange >= healthChangeDelay)
             {
                 OnInvincibilityEnd?.Invoke();
                 isAttacked = false;
             }
         }
-        
+
     }
 
     public bool ChangeHealth(float amount)
     {
-        if (timeSinceLastChange < healthChangeDelay)
+        Debug.Log($"{isAttacked}");
+        Debug.Log($"{timeSinceLastChange}, {healthChangeDelay}, {amount}StartChangeHealth");
+        if (timeSinceLastChange < healthChangeDelay && amount <= 0)
         {
             return false;
         }
+        Debug.Log("ReallyStartChangeHealth");
 
-        timeSinceLastChange = 0f;
         CurrentHealth += amount;
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
-
+        if (this.gameObject.CompareTag("Player"))
+        {
+            UIManager.instance.DisplayHP();
+        }
         if (CurrentHealth <= 0f)
         {
             CallDeath(transform.position);
@@ -64,6 +70,7 @@ public class HealthSystem : MonoBehaviour
         else
         {
             isAttacked = true;
+            timeSinceLastChange = 0f;
             OnDamage?.Invoke();
         }
         return true;
@@ -71,6 +78,10 @@ public class HealthSystem : MonoBehaviour
 
     private void CallDeath(Vector2 position)
     {
+        if (this.gameObject.CompareTag("Player") == false)
+        {
+            PlayerLevelAndExpManager.instance.GetExp(statHandler.CurrentStat.exp);
+        }
         OnDeath?.Invoke(position);
     }
 

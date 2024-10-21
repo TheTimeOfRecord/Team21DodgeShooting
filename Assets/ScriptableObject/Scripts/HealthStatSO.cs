@@ -11,6 +11,7 @@ public class HealthStatSO : ScriptableObject, ICloneable
     public float ATK;
     public float speed;
     public float exp;
+    public int level;
     public float bulletSize;
     public float bulletSpeed;
     public int bulletNum;
@@ -22,6 +23,7 @@ public class HealthStatSO : ScriptableObject, ICloneable
         return this.MemberwiseClone();
     }
 }
+
 
 public enum needExp
 {

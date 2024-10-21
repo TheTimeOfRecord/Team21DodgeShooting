@@ -41,7 +41,7 @@ public class StatHandler : MonoBehaviour
                 break;
         }
     }
-    public void ModifiyCharacterStat(ItemSO itemSO)
+    public void ModifiyPlayerStat(ItemSO itemSO)
     {
         itemToStatAssigner.ModifyStatBasedOnItem(itemSO, CurrentStat);
     }

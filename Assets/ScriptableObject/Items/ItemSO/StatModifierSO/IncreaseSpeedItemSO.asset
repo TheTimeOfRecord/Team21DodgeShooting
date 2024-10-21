@@ -18,5 +18,5 @@ MonoBehaviour:
   itemBackColor: {r: 0.15566039, g: 0.53625524, b: 1, a: 1}
   fontColor: {r: 0.764151, g: 0.34042498, b: 0.16941082, a: 1}
   itemInfoText: "\uC2A4\uD53C\uB4DC \uC99D\uAC00"
-  statInfoText: +1
-  stat: 1
+  statInfoText: +0.1
+  stat: 0.1

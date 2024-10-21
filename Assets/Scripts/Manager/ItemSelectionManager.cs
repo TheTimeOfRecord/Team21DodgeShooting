@@ -11,6 +11,9 @@ public class ItemSelectionManager : MonoBehaviour
     public static ItemSelectionManager instance;
 
     [SerializeField] private GameObject selectPanel;
+
+    [SerializeField] private GetUsableItemAssigner getUsableItemAssigner;
+
     [SerializeField] private List<ItemSO> allItems;
     [SerializeField] private List<ItemButtonHandler> optionButtons;
     private int selectionOptionCount = 3;
@@ -76,11 +79,11 @@ public class ItemSelectionManager : MonoBehaviour
         //TODO : 아이템 선택 처리 로직
         if (selectedItemSO.itemType == ItemType.StatModifier)
         {
-            statHandler.ModifiyCharacterStat(selectedItemSO);
+            statHandler.ModifiyPlayerStat(selectedItemSO);
         }
         else if (selectedItemSO.itemType == ItemType.UsableItem)
         {
-
+            getUsableItemAssigner.GetItem(selectedItemSO);
         }
         Debug.Log($"Button {selectedItemSO.itemName} onClick assigned");
 

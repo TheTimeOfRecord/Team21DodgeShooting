@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: TestBlinkingEnemyStatSO 1
   m_EditorClassIdentifier: 
   maxHP: 100
-  ATK: 100
+  ATK: 5
   speed: 3
-  exp: 0
+  exp: 0.2
+  level: 0
   bulletSize: 1
   bulletSpeed: 5
   bulletNum: 8
   attackDelay: 1
+  bombNum: 0

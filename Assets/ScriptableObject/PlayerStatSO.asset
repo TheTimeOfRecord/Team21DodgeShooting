@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStatSO
   m_EditorClassIdentifier: 
   maxHP: 100
-  ATK: 100
+  ATK: 50
   speed: 5
   exp: 0
+  level: 1
   bulletSize: 2
   bulletSpeed: 10
   bulletNum: 5

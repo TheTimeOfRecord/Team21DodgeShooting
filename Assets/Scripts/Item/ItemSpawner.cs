@@ -26,7 +26,7 @@ public class ItemSpawner : MonoBehaviour
         // TODO : 아이템 드랍 방식을 정해야 함.
         // 아이템 드랍하는 enemy를 만들지, enemy 별로 아이템 드랍 확률을 만들지 등등
         float random = Random.Range(0f, 10f);
-        if (random < 10f)
+        if (random < 1f)
         {
             return true;
         }

@@ -25,6 +25,7 @@ public class ItemToStatAssigner : MonoBehaviour
             if (statModifiers.TryGetValue(itemSO.itemName, out Action<HealthStatSO, float> modifyAction))
             {
                 modifyAction(currentStat, itemSO.stat);
+                UIManager.instance.DiplayUI();
                 Debug.Log($"{itemSO.itemName} 스탯변경 완료.");
             }
             else
