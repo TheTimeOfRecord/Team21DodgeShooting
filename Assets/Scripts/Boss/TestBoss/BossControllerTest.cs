@@ -23,14 +23,15 @@ public class BossControllerTest : MonoBehaviour
     private StatHandler statHandler;
     private Rigidbody2D rb;
 
-    [SerializeField] private float blinkDelayTime = 1f;
-    private bool canBlink;
+    [SerializeField] private float blinkDelayTime = 2f;
+    private bool canBlink = true;
+    private bool canBossPattern = true;
     private Vector2 direction;
     private float distance;
 
     [SerializeField, Range(1f, 5f)] private float Range = 5f;
     private float rad;
-    private bool isRanged;
+    private bool isRanged = false;
     private Vector2 initDirectionInRange;
 
 
@@ -57,19 +58,23 @@ public class BossControllerTest : MonoBehaviour
 
     private void BossMove(int patternIndex)
     {
+        direction = DirectionToTarget();
+
+        rb.velocity = direction * statHandler.CurrentStat.speed;
+
         switch (patternIndex)
         {
             case 0:
-                Hovering();
+                DefaultMove();
                 break;
             case 1:
-                Hovering();
+                HoveringMove();
                 break;
             case 2:
-                ChargingMove();
+                BlinkingMove();
                 break;
             case 3:
-                BlinkingMove();
+                ChargingMove();
                 break;
             case 4:
                 DefaultMove();
@@ -100,13 +105,18 @@ public class BossControllerTest : MonoBehaviour
     private void FixedUpdate()
     {
         if(animCtrl.GetBool("isEndLoad"))
+            RotateToTarget(direction);
+
+        direction = DirectionToTarget();
         RotateToTarget(direction);
-        BossMove(pattern);
+
+        if (canBossPattern)
+            BossMove(pattern);
     }
 
     private void FollowPlayer()
     {
-        if(mainCamera != null)
+        if (mainCamera != null)
         {
             Vector3 screenPosition = new Vector3(Screen.width * screenOffset.x, Screen.height * screenOffset.y, screenOffset.z);
             Vector3 worldPosition = mainCamera.ScreenToWorldPoint(screenPosition);
@@ -129,16 +139,13 @@ public class BossControllerTest : MonoBehaviour
     protected void RotateToTarget(Vector2 _direction)
     {
         float rotZ = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
+        transform.rotation = Quaternion.Euler(0, 0, rotZ + 90f);
     }
 
     private void DefaultMove()
     {
-        distance = DistanceToTarget();
-        direction = DirectionToTarget();
-
         //플레이어 방향으로 다가가되 일정거리 이하가 되면 속도가 늦춰짐
-        if(distance < 5f)
+        if (distance < 5f)
         {
             statHandler.ChangeCharacterStat(stats.speed, 3f);
         }
@@ -146,24 +153,10 @@ public class BossControllerTest : MonoBehaviour
         {
             statHandler.ChangeCharacterStat(stats.speed, 8f);
         }
-        rb.velocity = direction * statHandler.CurrentStat.speed;
-    }
-
-    private void TractingMove()
-    {
-        statHandler.ChangeCharacterStat(stats.speed, 5f);
-        direction = DirectionToTarget();
-        distance = DistanceToTarget();
-        if(distance < 5)
-        {
-            rb.velocity = direction * 3;
-        }
-        rb.velocity = direction * statHandler.CurrentStat.speed;
     }
 
     private void BlinkingMove()
     {
-        direction = DirectionToTarget();
         if (canBlink)
         {
             canBlink = false;
@@ -194,11 +187,14 @@ public class BossControllerTest : MonoBehaviour
 
     private void HoveringMove()
     {
+        Debug.Log("HoveringMove");
+
         direction = DirectionToTarget();
 
         if (!isRanged)
         {
             float distance = DistanceToTarget();
+            rb.velocity = direction * statHandler.CurrentStat.speed;
 
             if (distance <= Range)
             {
@@ -210,7 +206,7 @@ public class BossControllerTest : MonoBehaviour
         {
             direction = direction * -1;
             float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.localRotation = Quaternion.Euler(0, 0, rotZ);
+            transform.localRotation = Quaternion.Euler(0, 0, rotZ + 180);
             Hovering();
         }
     }
@@ -227,25 +223,24 @@ public class BossControllerTest : MonoBehaviour
 
     private void ChargingMove()
     {
-        direction = DirectionToTarget();
-
+        canBossPattern = false;
         StartCoroutine(Charging());
     }
 
     private IEnumerator Charging()
     {
         statHandler.ChangeCharacterStat(stats.speed, 0f);
-        RotateToTarget(direction);
         yield return waitFiveSeconds;
 
         Vector2 lastPos = DirectionToTarget();
-        statHandler.ChangeCharacterStat(stats.speed, 10f);
-        rb.velocity = lastPos * statHandler.CurrentStat.speed;
+        initDirectionInRange = lastPos;
+        yield return null;
 
-        if((Vector2)transform.position == lastPos)
-        {
-            statHandler.ChangeCharacterStat(stats.speed, 5f);
-        }
+        statHandler.ChangeCharacterStat(stats.speed, 10f);
+        rb.velocity = initDirectionInRange * statHandler.CurrentStat.speed;
+        yield return new WaitForSeconds(1f);
+        rb.velocity = Vector2.zero;
+        canBossPattern = true;
     }
 
     WaitForSeconds waitFiveSeconds = new WaitForSeconds(5f);

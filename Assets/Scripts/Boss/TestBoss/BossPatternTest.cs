@@ -296,7 +296,7 @@ public class BossPatternTest : MonoBehaviour
             {
                 Vector2 target = GameManager.Instance.Player.position;
                 bullet.SetShooter(this.gameObject);
-                bullet.Move(statHandler.CurrentStat.bulletSpeed, WeaponPivots[i].position + Vector3.down * 1000);
+                bullet.Move(statHandler.CurrentStat.bulletSpeed, GameManager.Instance.Player.position);
             }
             yield return wait;
         }

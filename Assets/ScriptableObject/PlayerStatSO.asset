@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 500
   ATK: 100
-  speed: 5
+  speed: 7
   exp: 0
   bulletSize: 2
   bulletSpeed: 10
