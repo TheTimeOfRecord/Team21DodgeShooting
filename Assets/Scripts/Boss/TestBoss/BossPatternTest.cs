@@ -73,7 +73,7 @@ public class BossPatternTest : MonoBehaviour
         {
             monster.gameObject.SetActive(false);
         }
-
+        CancelInvoke();
         StopAllCoroutines();
         rb.velocity = Vector3.zero;
         transform.position = GameManager.Instance.Player.position + new Vector3(0, 2, 0);
