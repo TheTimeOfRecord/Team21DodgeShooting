@@ -16,11 +16,11 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         vc = GetComponent<CinemachineVirtualCamera>();
+        animCtrl = playerCamera.GetComponent<Animator>();
     }
 
     private void Start()
     {
-        animCtrl = playerCamera.GetComponent<Animator>();
         noise =vc.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         SceneManager.sceneLoaded += OnSceneLoaded;
         ShakeCamera(4, 1.5f);

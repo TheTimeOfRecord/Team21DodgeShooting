@@ -53,7 +53,7 @@ public class BossPattern : MonoBehaviour
         fireAction.Enable();
     }
 
-    private void OnDead()
+    private void OnDead(Vector2 position)
     {
         isAlive = false;
         anim.SetTrigger("OnBossDead");
