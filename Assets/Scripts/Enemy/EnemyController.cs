@@ -8,22 +8,19 @@ public class EnemyController : DodgeController
 {
     protected Transform AttackTarget { get; private set; }
     protected Vector2 direction;
-    protected StatHandler statHandler;
     [SerializeField] protected Sprite sprite;
     protected SpriteRenderer mainSprite;
-
-    // [SerializeField] private string targetTag = "Player";
 
     protected override void Awake()
     {
         base.Awake();
-        AttackTarget = GameManager.Instance.Player;
         mainSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected virtual void OnEnable()
     {
         mainSprite.sprite = sprite;
+        AttackTarget = GameManager.Instance.Player;
     }
 
     protected virtual void Start()
@@ -55,5 +52,17 @@ public class EnemyController : DodgeController
     {
         float rotZ = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rotZ - 90f);
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            HealthSystem healthSystem = collision.gameObject.GetComponent<HealthSystem>();
+            StatHandler statHandler = GetComponent<StatHandler>();
+            healthSystem.ChangeHealth(statHandler.CurrentStat.ATK * -1);
+            Debug.Log("Ãæµ¹! " + healthSystem.CurrentHealth);
+            gameObject.SetActive(false);
+        }
     }
 }
