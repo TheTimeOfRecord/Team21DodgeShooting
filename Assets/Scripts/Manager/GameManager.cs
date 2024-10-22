@@ -53,10 +53,10 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        else if(EnemyDeathCount >= 10)
+        else if(EnemyDeathCount >= 150)
         {
             isBossAppeared = !isBossAppeared;
-            //ToBoss();
+            ToBoss();
         }
     }
 
@@ -93,14 +93,14 @@ public class GameManager : MonoBehaviour
     {
         DestroyAllBullets();
 
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BossScene");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("BossSceneTest");
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
         DestroyAllBullets();
 
-        SceneManager.LoadScene("BossScene");
+        SceneManager.LoadScene("BossSceneTest");
     }
 
     private void DestroyAllBullets()

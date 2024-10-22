@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StatHandler : MonoBehaviour
 {
-    [SerializeField] private HealthStatSO baseStat;
+    [SerializeField] public HealthStatSO baseStat;
     public HealthStatSO CurrentStat { get; private set; }
 
     private ItemToStatAssigner itemToStatAssigner;
@@ -44,6 +44,18 @@ public class StatHandler : MonoBehaviour
                 break;
         }
     }
+
+    public void PlusBullet(stats stat, int amount)
+    {
+        CurrentStat.bulletNum += amount;
+    }
+
+    public void PlustSpeed(stats stat, float amount)
+    {
+        CurrentStat.speed += amount;
+    }
+
+
     public void ModifiyPlayerStat(ItemSO itemSO)
     {
         itemToStatAssigner.ModifyStatBasedOnItem(itemSO, CurrentStat);
