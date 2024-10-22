@@ -3,16 +3,14 @@ using UnityEngine;
 
 public class TracingEnemyController : EnemyController
 {
-    // private bool isCollidingWithTarget;
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
 
     protected override void Start()
     {
         base.Start();
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
     }
 
     protected override void FixedUpdate()
@@ -22,13 +20,5 @@ public class TracingEnemyController : EnemyController
         direction = DirectionToTarget();
         RotateToTarget(direction);
         CallMoveEvent(direction);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            gameObject.SetActive(false);
-        }
     }
 }

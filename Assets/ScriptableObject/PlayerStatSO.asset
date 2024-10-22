@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645017f77223acb4ca6a0f49404614d3, type: 3}
   m_Name: PlayerStatSO
   m_EditorClassIdentifier: 
-  maxHP: 100
-  ATK: 50
+  maxHP: 200
+  ATK: 70
   speed: 7
   exp: 0
   level: 1

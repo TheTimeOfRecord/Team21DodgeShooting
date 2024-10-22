@@ -15,17 +15,16 @@ public class HealthSystem : MonoBehaviour
     public event Action OnInvincibilityEnd;
 
     public float CurrentHealth { get; private set; }
-    public float MaxHealth => statHandler.CurrentStat.maxHP;
+    public float MaxHealth => statHandler.baseStat.maxHP;
 
     private void Awake()
     {
         statHandler = GetComponent<StatHandler>();
-        CurrentHealth = MaxHealth;
     }
 
     private void Start()
     {
-
+        CurrentHealth = MaxHealth;
     }
 
     private void Update()

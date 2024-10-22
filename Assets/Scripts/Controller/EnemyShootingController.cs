@@ -15,7 +15,6 @@ public class EnemyShootingController : MonoBehaviour
     {
         statHandler = GetComponent<StatHandler>();
         pivot = GetComponent<Transform>();
-        IsDead = false;
     }
 
 
@@ -25,6 +24,7 @@ public class EnemyShootingController : MonoBehaviour
         {
             SetProjectile();
         }
+        IsDead = false;
     }
 
     private void SetProjectile()

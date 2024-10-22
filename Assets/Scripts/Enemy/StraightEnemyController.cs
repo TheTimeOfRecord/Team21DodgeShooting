@@ -2,44 +2,37 @@
 
 public class StraightEnemyController : EnemyController
 {
-    private bool isSpawn = false;
+    private bool isSpawn;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        isSpawn = true;
+    }
 
     protected override void Start()
     {
         base.Start();
     }
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        direction = DirectionToTarget();
-    }
-
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
 
-
-        if (!isSpawn && gameObject.activeSelf)
+        if (isSpawn)
         {
-            SetDirection();
+            isSpawn = false;
+            direction = DirectionToTarget();            
         }
 
         RotateToTarget(direction);
         CallMoveEvent(direction);
 
         float distance = DistanceToTarget();
-        if (distance > 25)
+        if (distance > 15)
         {
             gameObject.SetActive(false);
-            isSpawn = false;
         }
-    }
-
-    private void SetDirection()
-    {
-        direction = DirectionToTarget();
-        isSpawn = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -47,7 +40,6 @@ public class StraightEnemyController : EnemyController
         if (collision.CompareTag("PlayerArea"))
         {
             gameObject.SetActive(false);
-            isSpawn = false;
         }
     }
 }
