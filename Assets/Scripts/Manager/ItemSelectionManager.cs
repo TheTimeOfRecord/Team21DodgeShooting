@@ -11,14 +11,11 @@ public class ItemSelectionManager : MonoBehaviour
     public static ItemSelectionManager instance;
 
     [SerializeField] private GameObject selectPanel;
-
     [SerializeField] private GetUsableItemAssigner getUsableItemAssigner;
-
     [SerializeField] private List<ItemSO> allItems;
     [SerializeField] private List<ItemButtonHandler> optionButtons;
-    private int selectionOptionCount = 3;
-
     [SerializeField] private StatHandler statHandler;
+    private int selectionOptionCount = 3;
 
     private void Awake()
     {
@@ -31,7 +28,6 @@ public class ItemSelectionManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     public void GetChoices()
     {
         DisplaySelectionOptions();
@@ -75,8 +71,7 @@ public class ItemSelectionManager : MonoBehaviour
 
     private void OnItemSelected(ItemSO selectedItemSO)
     {
-        Debug.Log($"아이템 이름: {selectedItemSO.itemName}");
-        //TODO : 아이템 선택 처리 로직
+        //아이템 선택 처리 로직
         if (selectedItemSO.itemType == ItemType.StatModifier)
         {
             statHandler.ModifiyPlayerStat(selectedItemSO);
@@ -85,8 +80,6 @@ public class ItemSelectionManager : MonoBehaviour
         {
             getUsableItemAssigner.GetItem(selectedItemSO);
         }
-        Debug.Log($"Button {selectedItemSO.itemName} onClick assigned");
-
         selectPanel.SetActive(false);
         Time.timeScale = 1f;
     }

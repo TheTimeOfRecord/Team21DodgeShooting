@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerLevelAndExpManager : MonoBehaviour
 {
     public static PlayerLevelAndExpManager instance;
-
     [SerializeField] private StatHandler statHandler;
 
     public List<float> neededExpPerLevel = new List<float>() {
@@ -31,13 +30,11 @@ public class PlayerLevelAndExpManager : MonoBehaviour
     {
         UIManager.instance.DiplayUI();
     }
-
     public void GetExp(float experience)
     {
         statHandler.CurrentStat.exp += experience;
         ApplyExperienceToLevel();
     }
-
     public void ApplyExperienceToLevel()
     {
         while (statHandler.CurrentStat.exp >= neededExpPerLevel[statHandler.CurrentStat.level])
@@ -49,5 +46,4 @@ public class PlayerLevelAndExpManager : MonoBehaviour
         }
         UIManager.instance.DisplayLevelAndEXP();
     }
-
 }

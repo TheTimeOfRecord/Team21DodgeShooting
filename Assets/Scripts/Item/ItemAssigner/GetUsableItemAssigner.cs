@@ -16,7 +16,6 @@ public class GetUsableItemAssigner : MonoBehaviour
             {"BombItemSO", GetBomb}
         };
     }
-
     public void GetItem(ItemSO selectedItemSO)
     {
         if (getUsableItemActions.TryGetValue(selectedItemSO.itemName, out Action<float> getItemAction))
@@ -30,7 +29,6 @@ public class GetUsableItemAssigner : MonoBehaviour
             Debug.Log($"{selectedItemSO.itemName}에 대한 GetItem 규칙이 정의되지 않았습니다.");
         }
     }
-
     public void GetRecoveryPotion(float itemStat)
     {
         playerHealthSystem.ChangeHealth(itemStat);
@@ -42,5 +40,4 @@ public class GetUsableItemAssigner : MonoBehaviour
         // 플레이어의 Bomb의 개수를 관리하는 곳에 Bomb +1
         Debug.Log("Get Bomb");
     }
-
 }

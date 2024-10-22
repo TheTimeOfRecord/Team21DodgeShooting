@@ -17,7 +17,6 @@ public class ItemToStatAssigner : MonoBehaviour
             //StatModifier추가시 여기에 기능 추가
         };
     }
-
     public void ModifyStatBasedOnItem(ItemSO itemSO, HealthStatSO currentStat)
     {
         if (itemSO.itemType == ItemType.StatModifier)

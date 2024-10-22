@@ -4,15 +4,17 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
-
     public HealthSystem healthSystem;
     public StatHandler statHandler;
 
-
+    //레벨
     public Text levelTxt;
+
+    //경험치 바
     public RectTransform frontExpBarRT;
     public Text expBarTxt;
 
+    //체력 바
     public RectTransform frontHpBarRT;
     public Text hpBarTxt;
 
@@ -33,7 +35,6 @@ public class UIManager : MonoBehaviour
         DisplayLevelAndEXP();
         DisplayHP();
     }
-
     public void DisplayLevelAndEXP()
     {
         HealthStatSO healthStatSO = statHandler.CurrentStat;
@@ -42,7 +43,6 @@ public class UIManager : MonoBehaviour
         expBarTxt.text = $"{healthStatSO.exp:F2}/{neededExp:F2}";
         frontExpBarRT.localScale = new Vector3(healthStatSO.exp / neededExp, 1.0f, 1.0f);
     }
-
     public void DisplayHP()
     {
         Debug.Log($"DisplayHP {healthSystem.CurrentHealth}");

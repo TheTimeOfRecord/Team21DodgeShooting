@@ -21,6 +21,4 @@ public class ItemButtonHandler : MonoBehaviour
 
         statText.text = itemSO.statInfoText;
     }
-
-
 }

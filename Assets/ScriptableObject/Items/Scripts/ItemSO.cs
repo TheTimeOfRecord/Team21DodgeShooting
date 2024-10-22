@@ -7,7 +7,6 @@ public enum ItemType
     StatModifier,
     UsableItem
 }
-
 [CreateAssetMenu(fileName ="ItemSO", menuName = "DodgeController/Items/ItemSO")]
 public class ItemSO : ScriptableObject
 {
@@ -20,7 +19,6 @@ public class ItemSO : ScriptableObject
     public string itemInfoText;
     public string statInfoText;
     public float stat;
-
     private void OnValidate()
     {
         itemName = this.name;
